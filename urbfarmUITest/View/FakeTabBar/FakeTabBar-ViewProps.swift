@@ -10,10 +10,20 @@ import UIKit
 
 class FakeTabBar: UIView {
     
+    enum PropsConstant {
+        enum MenuCell: CGFloat {
+            case width = 50
+            case height = 65
+        }
+        enum MenuCollectionView: CGFloat {
+            case spacing = 65
+        }
+    }
+    
     lazy var menucCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.minimumLineSpacing = 40
+        layout.minimumLineSpacing = PropsConstant.MenuCollectionView.spacing.rawValue
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
         
@@ -44,10 +54,14 @@ class FakeTabBar: UIView {
     }
     
     private func setupCollectionViewConstraint()  {
+        let collectionWidth =
+            (Int(PropsConstant.MenuCell.width.rawValue) * 3) +
+            (Int(PropsConstant.MenuCollectionView.spacing.rawValue) * 2)
+        
         menucCollectionView.translatesAutoresizingMaskIntoConstraints = false
         menucCollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         menucCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
-        menucCollectionView.widthAnchor.constraint(equalToConstant: CGFloat(150 + 80)).isActive = true
+        menucCollectionView.widthAnchor.constraint(equalToConstant: CGFloat(collectionWidth)).isActive = true
         menucCollectionView.heightAnchor.constraint(equalToConstant: 65).isActive = true
     }
     

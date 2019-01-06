@@ -13,6 +13,7 @@ class MenuCell: UICollectionViewCell {
     let menuIcon: UIImageView = {
         let img = UIImageView()
         img.tintColor = .lightGray
+        img.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
         return img
     }()
     
