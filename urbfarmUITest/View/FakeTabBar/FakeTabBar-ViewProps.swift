@@ -48,7 +48,7 @@ class FakeTabBar: UIView {
         menucCollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         menucCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         menucCollectionView.widthAnchor.constraint(equalToConstant: CGFloat(150 + 80)).isActive = true
-        menucCollectionView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        menucCollectionView.heightAnchor.constraint(equalToConstant: 65).isActive = true
     }
     
     private func setupView() {
