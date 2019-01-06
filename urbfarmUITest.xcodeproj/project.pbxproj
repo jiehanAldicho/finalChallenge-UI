@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B94F568721E1E0F4003EB703 /* FakeTabBar-ViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F568621E1E0F4003EB703 /* FakeTabBar-ViewProps.swift */; };
+		B94F568A21E1E247003EB703 /* FakeTabBar-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F568921E1E247003EB703 /* FakeTabBar-CollectionView.swift */; };
+		B94F568C21E1E26A003EB703 /* FakeTabBar-MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F568B21E1E26A003EB703 /* FakeTabBar-MenuCell.swift */; };
+		B94F568E21E1E2CB003EB703 /* FakeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F568D21E1E2CB003EB703 /* FakeTabBar.swift */; };
 		B9DE3B9521E0ABE100821C31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */; };
-		B9DE3B9721E0ABE100821C31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3B9621E0ABE100821C31 /* ViewController.swift */; };
-		B9DE3B9A21E0ABE100821C31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9DE3B9821E0ABE100821C31 /* Main.storyboard */; };
-		B9DE3B9C21E0ABE200821C31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9DE3B9B21E0ABE200821C31 /* Assets.xcassets */; };
+		B9DE3B9721E0ABE100821C31 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3B9621E0ABE100821C31 /* MainTabBarController.swift */; };
 		B9DE3B9F21E0ABE200821C31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9DE3B9D21E0ABE200821C31 /* LaunchScreen.storyboard */; };
+		B9DE3BAB21E0ACB400821C31 /* HomeViewController-ViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BAA21E0ACB400821C31 /* HomeViewController-ViewProps.swift */; };
+		B9DE3BB021E0AE0200821C31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BAF21E0AE0200821C31 /* HomeViewController.swift */; };
+		B9DE3BB221E0AE4500821C31 /* HomeViewController-Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BB121E0AE4500821C31 /* HomeViewController-Constraints.swift */; };
+		B9DE3BB421E0AE5F00821C31 /* HomeViewController-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BB321E0AE5F00821C31 /* HomeViewController-CollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B94F568621E1E0F4003EB703 /* FakeTabBar-ViewProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeTabBar-ViewProps.swift"; sourceTree = "<group>"; };
+		B94F568921E1E247003EB703 /* FakeTabBar-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeTabBar-CollectionView.swift"; sourceTree = "<group>"; };
+		B94F568B21E1E26A003EB703 /* FakeTabBar-MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeTabBar-MenuCell.swift"; sourceTree = "<group>"; };
+		B94F568D21E1E2CB003EB703 /* FakeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTabBar.swift; sourceTree = "<group>"; };
 		B9DE3B9121E0ABE100821C31 /* urbfarmUITest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = urbfarmUITest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B9DE3B9621E0ABE100821C31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B9DE3B9921E0ABE100821C31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B9DE3B9B21E0ABE200821C31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B9DE3B9621E0ABE100821C31 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B9DE3B9E21E0ABE200821C31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9DE3BA021E0ABE200821C31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9DE3BAA21E0ACB400821C31 /* HomeViewController-ViewProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-ViewProps.swift"; sourceTree = "<group>"; };
+		B9DE3BAF21E0AE0200821C31 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B9DE3BB121E0AE4500821C31 /* HomeViewController-Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-Constraints.swift"; sourceTree = "<group>"; };
+		B9DE3BB321E0AE5F00821C31 /* HomeViewController-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-CollectionView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +47,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B94F568821E1E234003EB703 /* FakeTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				B94F568D21E1E2CB003EB703 /* FakeTabBar.swift */,
+				B94F568621E1E0F4003EB703 /* FakeTabBar-ViewProps.swift */,
+				B94F568921E1E247003EB703 /* FakeTabBar-CollectionView.swift */,
+				B94F568B21E1E26A003EB703 /* FakeTabBar-MenuCell.swift */,
+			);
+			path = FakeTabBar;
+			sourceTree = "<group>";
+		};
 		B9DE3B8821E0ABE100821C31 = {
 			isa = PBXGroup;
 			children = (
@@ -54,14 +77,49 @@
 		B9DE3B9321E0ABE100821C31 /* urbfarmUITest */ = {
 			isa = PBXGroup;
 			children = (
-				B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */,
-				B9DE3B9621E0ABE100821C31 /* ViewController.swift */,
-				B9DE3B9821E0ABE100821C31 /* Main.storyboard */,
-				B9DE3B9B21E0ABE200821C31 /* Assets.xcassets */,
-				B9DE3B9D21E0ABE200821C31 /* LaunchScreen.storyboard */,
+				B9DE3BA621E0AC7500821C31 /* Controller */,
+				B9DE3BA921E0AC9800821C31 /* View */,
+				B9DE3BA721E0AC8D00821C31 /* Model */,
 				B9DE3BA021E0ABE200821C31 /* Info.plist */,
 			);
 			path = urbfarmUITest;
+			sourceTree = "<group>";
+		};
+		B9DE3BA621E0AC7500821C31 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */,
+				B9DE3B9621E0ABE100821C31 /* MainTabBarController.swift */,
+				B9DE3BAC21E0AD4500821C31 /* Home */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B9DE3BA721E0AC8D00821C31 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B9DE3BA921E0AC9800821C31 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B94F568821E1E234003EB703 /* FakeTabBar */,
+				B9DE3B9D21E0ABE200821C31 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B9DE3BAC21E0AD4500821C31 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B9DE3BAF21E0AE0200821C31 /* HomeViewController.swift */,
+				B9DE3BAA21E0ACB400821C31 /* HomeViewController-ViewProps.swift */,
+				B9DE3BB121E0AE4500821C31 /* HomeViewController-Constraints.swift */,
+				B9DE3BB321E0AE5F00821C31 /* HomeViewController-CollectionView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,8 +181,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9DE3B9F21E0ABE200821C31 /* LaunchScreen.storyboard in Resources */,
-				B9DE3B9C21E0ABE200821C31 /* Assets.xcassets in Resources */,
-				B9DE3B9A21E0ABE100821C31 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +191,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9DE3B9721E0ABE100821C31 /* ViewController.swift in Sources */,
+				B9DE3BB021E0AE0200821C31 /* HomeViewController.swift in Sources */,
+				B94F568A21E1E247003EB703 /* FakeTabBar-CollectionView.swift in Sources */,
+				B94F568721E1E0F4003EB703 /* FakeTabBar-ViewProps.swift in Sources */,
+				B9DE3B9721E0ABE100821C31 /* MainTabBarController.swift in Sources */,
+				B94F568E21E1E2CB003EB703 /* FakeTabBar.swift in Sources */,
+				B9DE3BB421E0AE5F00821C31 /* HomeViewController-CollectionView.swift in Sources */,
+				B94F568C21E1E26A003EB703 /* FakeTabBar-MenuCell.swift in Sources */,
 				B9DE3B9521E0ABE100821C31 /* AppDelegate.swift in Sources */,
+				B9DE3BAB21E0ACB400821C31 /* HomeViewController-ViewProps.swift in Sources */,
+				B9DE3BB221E0AE4500821C31 /* HomeViewController-Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B9DE3B9821E0ABE100821C31 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B9DE3B9921E0ABE100821C31 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B9DE3B9D21E0ABE200821C31 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
