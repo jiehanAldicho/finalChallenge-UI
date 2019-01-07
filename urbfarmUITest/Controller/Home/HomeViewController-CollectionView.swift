@@ -9,6 +9,8 @@
 import UIKit
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
@@ -25,9 +27,25 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return CGSize(width: view.frame.width, height: 300)
     }
     
-    func setupCollectionView() {
-        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        UIView.animate(withDuration: 1, animations: <#T##() -> Void#>)
+//        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        animateCollectionView()
     }
+    
+    func animateCollectionView() {
+        collectionViewYConstraint.constant = -100
+        tabBarYConstraint.constant = -200
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+struct sectionDataTest {
+    var opened   = Bool()
+    var title    = ""
+    var cellData = [String]()
 }
 
 class StackingLayout: UICollectionViewFlowLayout {
@@ -42,7 +60,7 @@ class RoundedCell: UICollectionViewCell {
         
         //Rounded corner
         self.layer.cornerRadius = self.frame.height / 3
-        self.layer.maskedCorners = [.layerMinXMaxYCorner]
+        self.layer.maskedCorners = [.layerMaxXMaxYCorner]
     }
     
     required init?(coder aDecoder: NSCoder) {

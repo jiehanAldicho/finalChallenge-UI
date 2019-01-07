@@ -71,7 +71,7 @@ extension FakeTabBar: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
         UIView.animate(withDuration: 1) {
             cell.menuIcon.tintColor = .lightGray
 //            cell.circleBG.layer.borderColor = UIColor.lightGray.cgColor
-            cell.menuLabel.textColor = .lightGray
+//            cell.menuLabel.textColor = .lightGray
         }
         
         //UILabel color is un-animatable, use cross dissolve transition instead

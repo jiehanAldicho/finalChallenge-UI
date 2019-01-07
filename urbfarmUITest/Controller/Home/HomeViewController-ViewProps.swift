@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
         colView.delegate = self
         colView.backgroundColor = .clear
         colView.bounces = false
+        colView.contentInsetAdjustmentBehavior = .never //Makes collectionview cell fully on top anchor
         
         //Register cell here
         colView.register(RoundedCell.self, forCellWithReuseIdentifier: "roundedCell")
@@ -34,4 +35,9 @@ class HomeViewController: UIViewController {
         return tab
     }()
     
+    //MARK: Constraint reference for animation
+    //Should these be props of the collectionview object ?
+    
+    var collectionViewYConstraint: NSLayoutConstraint!
+    var tabBarYConstraint: NSLayoutConstraint!
 }

@@ -70,7 +70,7 @@ class FakeTabBar: UIView {
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 160)
         
         self.layer.cornerRadius = self.frame.height * 0.6
-        self.layer.maskedCorners = [.layerMinXMaxYCorner]
+        self.layer.maskedCorners = [.layerMaxXMaxYCorner]
         self.clipsToBounds = true
     }
 }
