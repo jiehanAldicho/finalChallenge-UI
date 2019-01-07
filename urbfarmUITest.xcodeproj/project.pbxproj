@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B920946A21E3C60F0007A4EB /* HomeViewController-RoundedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920946921E3C60F0007A4EB /* HomeViewController-RoundedCell.swift */; };
 		B94F568721E1E0F4003EB703 /* FakeTabBar-ViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F568621E1E0F4003EB703 /* FakeTabBar-ViewProps.swift */; };
 		B94F568A21E1E247003EB703 /* FakeTabBar-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F568921E1E247003EB703 /* FakeTabBar-CollectionView.swift */; };
 		B94F568C21E1E26A003EB703 /* FakeTabBar-MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F568B21E1E26A003EB703 /* FakeTabBar-MenuCell.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B920946921E3C60F0007A4EB /* HomeViewController-RoundedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-RoundedCell.swift"; sourceTree = "<group>"; };
 		B94F568621E1E0F4003EB703 /* FakeTabBar-ViewProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeTabBar-ViewProps.swift"; sourceTree = "<group>"; };
 		B94F568921E1E247003EB703 /* FakeTabBar-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeTabBar-CollectionView.swift"; sourceTree = "<group>"; };
 		B94F568B21E1E26A003EB703 /* FakeTabBar-MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeTabBar-MenuCell.swift"; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				B9DE3BAA21E0ACB400821C31 /* HomeViewController-ViewProps.swift */,
 				B9DE3BB121E0AE4500821C31 /* HomeViewController-Constraints.swift */,
 				B9DE3BB321E0AE5F00821C31 /* HomeViewController-CollectionView.swift */,
+				B920946921E3C60F0007A4EB /* HomeViewController-RoundedCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				B94F568C21E1E26A003EB703 /* FakeTabBar-MenuCell.swift in Sources */,
 				B9DE3B9521E0ABE100821C31 /* AppDelegate.swift in Sources */,
 				B9DE3BAB21E0ACB400821C31 /* HomeViewController-ViewProps.swift in Sources */,
+				B920946A21E3C60F0007A4EB /* HomeViewController-RoundedCell.swift in Sources */,
 				B9DE3BB221E0AE4500821C31 /* HomeViewController-Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
