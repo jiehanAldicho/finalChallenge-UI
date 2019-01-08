@@ -16,7 +16,6 @@ class HomeViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = -100
         
-        
         let colView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         colView.dataSource = self
         colView.delegate = self
@@ -26,6 +25,8 @@ class HomeViewController: UIViewController {
         
         //Register cell here
         colView.register(RoundedCell.self, forCellWithReuseIdentifier: "roundedCell")
+        colView.register(ContentCell.self, forCellWithReuseIdentifier: "contentCell")
+        colView.register(BottomContentCell.self, forCellWithReuseIdentifier: "bottomCell")
         
         return colView
     }()
@@ -34,6 +35,8 @@ class HomeViewController: UIViewController {
         let tab = FakeTabBar()
         return tab
     }()
+    
+    var sectionDataTest = [SectionData]()
     
     //MARK: Constraint reference for animation
     //Should these be props of the collectionview object ?

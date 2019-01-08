@@ -12,9 +12,24 @@ protocol RoundedCellDelegate: class {
     func backButtonPressed(onCell cell: RoundedCell)
 }
 
+extension HomeViewController: RoundedCellDelegate {
+    func backButtonPressed(onCell: RoundedCell)  {
+        collapseCell()
+    }
+}
+
 class RoundedCell: UICollectionViewCell {
     
     weak var delegate: RoundedCellDelegate?
+    
+    let cellTitleLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.text = ""
+        lbl.font = UIFont(name: "Avenir-Heavy", size: 20)
+        lbl.textColor = .white
+        lbl.alpha = 0
+        return lbl
+    }()
     
     let backButton: UIButton = {
         let img = UIImage(named: "Back")?.withRenderingMode(.alwaysTemplate)
@@ -33,7 +48,13 @@ class RoundedCell: UICollectionViewCell {
         backButton.addTarget(self, action: #selector(handleBackButtonPressed), for: .touchUpInside)
         setupButtonConstraint()
         
-        //Rounded corner
+        self.addSubview(cellTitleLabel)
+        setupTitleLabelConstraint()
+        
+        roundCorner()
+    }
+    
+    func roundCorner() {
         self.layer.cornerRadius = self.frame.height / 3
         self.layer.maskedCorners = [.layerMaxXMaxYCorner]
     }
@@ -46,13 +67,21 @@ class RoundedCell: UICollectionViewCell {
         delegate?.backButtonPressed(onCell: self)
         UIView.animate(withDuration: 1) {
             self.backButton.alpha = 0
+            self.cellTitleLabel.alpha = 0
         }
     }
     
     func showBackButton() {
         UIView.animate(withDuration: 1) {
             self.backButton.alpha = 1
+            self.cellTitleLabel.alpha = 1
         }
+    }
+    
+    func setupTitleLabelConstraint() {
+        cellTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        cellTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
+        cellTitleLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 50).isActive = true
     }
     
     

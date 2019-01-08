@@ -19,6 +19,17 @@ extension HomeViewController {
         
         setupCollectionViewConstraint()
         setupTabBarConstraint()
+        
+        setupData()
+    }
+    
+    func setupData() {
+        for _ in 0...10 {
+            var data = SectionData()
+            data.title = "Nasi Goreng"
+            data.opened = false
+            sectionDataTest.append(data)
+        }
     }
     
 }
