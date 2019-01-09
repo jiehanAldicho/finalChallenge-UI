@@ -109,13 +109,29 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             if sectionDataTest[indexPath.section].opened == true {
                 sectionDataTest[indexPath.section].opened = false
                 
-                collectionView.performBatchUpdates({
+//                collectionView.performBatchUpdates({
+//                    let sections = IndexSet.init(integer: indexPath.section)
+//                    collectionView.reloadSections(sections)
+//                }, completion: nil)
+                
+                UIView.transition(with: collectionView, duration: 0.5, options: .curveEaseIn, animations: {
                     let sections = IndexSet.init(integer: indexPath.section)
                     collectionView.reloadSections(sections)
                 }, completion: nil)
                 
             } else {
                 sectionDataTest[indexPath.section].opened = true
+//                collectionView.reload
+//                UIView.transition(with: collectionView, duration: 0.5, options: .curveEaseOut, animations: {
+//                    let sections = IndexSet.init(integer: indexPath.section)
+//                    collectionView.reloadSections(sections)
+//
+//                }, completion: nil)
+                
+//                UIView.performWithoutAnimation {
+//                    let sections = IndexSet.init(integer: indexPath.section)
+//                    collectionView.reloadSections(sections)
+//                }
                 
                 collectionView.performBatchUpdates({
                     let sections = IndexSet.init(integer: indexPath.section)
@@ -153,9 +169,23 @@ class BottomContentCell: RoundedCell {
     }
 }
 
+//Delegate to retrieve section data
+protocol StackingLayoutDelegate: class {
+    func isSectionOpened(at: Int) -> Bool
+}
+
+extension HomeViewController: StackingLayoutDelegate {
+    func isSectionOpened(at: Int) -> Bool {
+        return sectionDataTest[at].opened
+    }
+}
+
 
 //Did not use cell layer's z position because it can't be clicked properly
 class StackingLayout: UICollectionViewFlowLayout {
+    
+    weak var delegate: StackingLayoutDelegate?
+    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let allAttributes = super.layoutAttributesForElements(in: rect) else {
             return nil
@@ -167,10 +197,30 @@ class StackingLayout: UICollectionViewFlowLayout {
                 attribute.zIndex = (attribute.indexPath.row) * -1
             }
 //            print("zindex: \(attribute.zIndex), section: \(attribute.indexPath.section), row: \(attribute.indexPath.row)")
+//            print("attribute for element: \(attribute.zIndex)")
         }
         return allAttributes
     }
 
+    override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard let attribute = super.initialLayoutAttributesForAppearingItem(at: itemIndexPath) else {
+            return nil
+        }
+        
+        if (itemIndexPath.section - 1 >= 0) && (itemIndexPath.row == 0)   {
+            guard let isSectionAboveOpened = delegate?.isSectionOpened(at: itemIndexPath.section - 1) else {
+                return nil
+            }
+            
+            if isSectionAboveOpened {
+                attribute.zIndex = (attribute.indexPath.section)
+            }
+            
+            print(isSectionAboveOpened, "section \(itemIndexPath.section)")
+        }
+        
+        return attribute
+    }
 }
 
 

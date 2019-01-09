@@ -12,9 +12,10 @@ class HomeViewController: UIViewController {
     
     lazy var customCollectionView: UICollectionView = {
 //        var colView = UICollectionView()
-        let layout: UICollectionViewFlowLayout = StackingLayout()
+        let layout = StackingLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = -100
+        layout.delegate = self
         
         let colView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         colView.dataSource = self
