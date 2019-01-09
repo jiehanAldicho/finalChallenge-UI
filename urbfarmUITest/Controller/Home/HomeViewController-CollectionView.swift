@@ -111,12 +111,36 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 
 
                 self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
-                    collectionView.performBatchUpdates({
-                        let sections = IndexSet.init(integer: indexPath.section)
-                        collectionView.reloadSections(sections)
-                    }) { (true) in
-                        
+//                    collectionView.performBatchUpdates({
+//                        let sections = IndexSet.init(integer: indexPath.section)
+//                        collectionView.reloadSections(sections)
+//                    }) { (true) in
+//
+//                    }
+                    
+                    
+                    
+                    var indices = [IndexPath]()
+                    
+                    for i in 1 ... self.sectionDataTest[indexPath.section].cellData.count {
+                        let newIndex = IndexPath(row: i, section: indexPath.section)
+                        indices.append(newIndex)
                     }
+                    
+//                    collectionView.deleteItems(at: indices)
+                    
+//                    UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+//
+//                    }, completion: nil)
+                    
+                    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+                        collectionView.deleteItems(at: indices)
+                    }, completion: { (true) in
+                        self.sectionDataTest[indexPath.section].cellData.removeAll()
+                    })
+                    
+                    
+                    
                 })
                 self.newCollapse()
                 
@@ -136,6 +160,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 //                    }
 //                    self.sectionDataTest[indexPath.section].cellData
                     
+                    //TODO: Refactor these shits
                     self.sectionDataTest[indexPath.section].cellData.append("bannamna")
                     self.sectionDataTest[indexPath.section].cellData.append("new shits")
                     
@@ -146,7 +171,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                         indices.append(newIndex)
                     }
                     
-                    collectionView.insertItems(at: indices)
+                    UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut, animations: {
+                        collectionView.insertItems(at: indices)
+                    }, completion: nil)
+                    
                     
                 })
                 self.newExpand()
