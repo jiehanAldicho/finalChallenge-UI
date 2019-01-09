@@ -78,7 +78,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         if indexPath.row == 1 {
             cellHeight = 250
         } else if indexPath.row == 2 {
-            cellHeight = 560
+            cellHeight = 565 //TODO: Calculate the remaining empty space
         }
         return CGSize(width: view.frame.width, height: cellHeight)
     }
@@ -110,27 +110,38 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 sectionDataTest[indexPath.section].opened = false
                 
                 
-                collectionView.performBatchUpdates({
-                    let sections = IndexSet.init(integer: indexPath.section)
-                    collectionView.reloadSections(sections)
-                }) { (true) in
-                    self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
-                        self.newCollapse()
-                    })
-                }
+                self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
+                    collectionView.performBatchUpdates({
+                        let sections = IndexSet.init(integer: indexPath.section)
+                        collectionView.reloadSections(sections)
+                    }) { (true) in
+                        
+                    }
+                })
+
+                
+                
+                
+                self.newCollapse()
                 
             } else {
                 
                 sectionDataTest[indexPath.section].opened = true
                 
-                collectionView.performBatchUpdates({
-                    let sections = IndexSet.init(integer: indexPath.section)
-                    collectionView.reloadSections(sections)
-                }) { (true) in
-                    self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
-                        self.newExpand()
-                    })
-                }
+                self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
+                    collectionView.performBatchUpdates({
+                        let sections = IndexSet.init(integer: indexPath.section)
+                        collectionView.reloadSections(sections)
+                    }) { (true) in
+                        
+                        
+                    }
+                    
+                })
+                
+                
+                
+                self.newExpand()
 
             }
         }
@@ -179,6 +190,8 @@ extension HomeViewController: StackingLayoutDelegate {
 //Did not use cell layer's z position because it can't be clicked properly
 class StackingLayout: UICollectionViewFlowLayout {
     
+    //TODO: Fix index bug -> the layoutAttribute function is called twice because there are two animations (scrolling and expanding the section)
+    
     weak var delegate: StackingLayoutDelegate?
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
@@ -195,14 +208,14 @@ class StackingLayout: UICollectionViewFlowLayout {
             } else {
                 attribute.zIndex = (attribute.indexPath.row) * -1
             }
-//            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex)")
+            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex), isBeingOpened \(isBeingOpened)")
         }
         isBeingOpened = false
         return allAttributes
     }
     
     override func prepare() {
-        print("prepare called")
+//        print("prepare called")
     }
 
     override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {

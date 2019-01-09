@@ -28,7 +28,6 @@ extension HomeViewController {
     }
     
     func newCollapse() {
-//        collectionViewYConstraint.constant = 0
         tabBarYConstraint.constant = 0
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
@@ -36,7 +35,6 @@ extension HomeViewController {
     }
     
     func newExpand() {
-//        collectionViewYConstraint.constant = -100
         tabBarYConstraint.constant = -200
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
@@ -44,19 +42,34 @@ extension HomeViewController {
     }
     
     func scrollToTargetCell(to indexPath: IndexPath, yOffset: CGFloat, completion: @escaping () -> ()) {
-        UIView.animate(withDuration: 1, animations: {
-//            self.customCollectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+//        UIView.animate(withDuration: 1, animations: {
+//            let selectedCell = self.customCollectionView.cellForItem(at: indexPath)
+//            guard let cellOffset = selectedCell?.frame else {
+//                return
+//            }
+//            
+//            let offset = CGPoint(x: cellOffset.minX, y: cellOffset.minY + yOffset)
+//            self.customCollectionView.setContentOffset(offset, animated: true)
+//            
+//            self.view.layoutIfNeeded()
+//        }) { (true) in
+//            completion()
+//        }
+        
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+            
             let selectedCell = self.customCollectionView.cellForItem(at: indexPath)
-            let cellOffset = selectedCell?.frame
+            guard let cellOffset = selectedCell?.frame else {
+                return
+            }
             
-            print(self.customCollectionView.contentSize, "content size")
-            print(cellOffset, "cell frame")
+            let offset = CGPoint(x: cellOffset.minX, y: cellOffset.minY + yOffset)
             
-            let offset = CGPoint(x: (cellOffset?.minX)!, y: (cellOffset?.minY)! + yOffset)
-            self.customCollectionView.setContentOffset(offset, animated: true)
+
+            self.customCollectionView.setContentOffset(offset, animated: false)
             
-            self.view.layoutIfNeeded()
-            print(indexPath)
+            
+//            self.view.layoutIfNeeded()
         }) { (true) in
             completion()
         }
