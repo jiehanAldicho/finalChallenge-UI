@@ -28,7 +28,7 @@ extension HomeViewController {
     }
     
     func newCollapse() {
-        collectionViewYConstraint.constant = 0
+//        collectionViewYConstraint.constant = 0
         tabBarYConstraint.constant = 0
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
@@ -36,18 +36,26 @@ extension HomeViewController {
     }
     
     func newExpand() {
-        collectionViewYConstraint.constant = -100
+//        collectionViewYConstraint.constant = -100
         tabBarYConstraint.constant = -200
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
         }
     }
     
-    func scrollToTargetCell(to indexPath: IndexPath, completion: @escaping () -> ()) {
+    func scrollToTargetCell(to indexPath: IndexPath, yOffset: CGFloat, completion: @escaping () -> ()) {
         UIView.animate(withDuration: 1, animations: {
-            self.customCollectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+//            self.customCollectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+            let selectedCell = self.customCollectionView.cellForItem(at: indexPath)
+            let cellOffset = selectedCell?.frame
+            
+            print(self.customCollectionView.contentSize, "content size")
+            print(cellOffset, "cell frame")
+            
+            let offset = CGPoint(x: (cellOffset?.minX)!, y: (cellOffset?.minY)! + yOffset)
+            self.customCollectionView.setContentOffset(offset, animated: true)
+            
             self.view.layoutIfNeeded()
-//            self.customCollectionView.setContentOffset(CGPoint(x: 0, y: 1000), animated: false)
             print(indexPath)
         }) { (true) in
             completion()

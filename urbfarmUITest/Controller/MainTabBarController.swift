@@ -22,7 +22,6 @@ class MainTabBarController: UITabBarController {
         self.viewControllers = [homeVC]
         self.selectedIndex = 0
         
-        print(self.tabBar)
     }
     
     override func viewDidLayoutSubviews() {

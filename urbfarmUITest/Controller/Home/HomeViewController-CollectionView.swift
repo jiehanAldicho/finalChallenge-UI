@@ -32,7 +32,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if section != 0 {
             if sectionDataTest[section - 1].opened == true {
-                print("section above opened")
                 return UIEdgeInsets(top: 100, left: 0, bottom: -100, right: 0)
                 
             }
@@ -79,7 +78,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         if indexPath.row == 1 {
             cellHeight = 250
         } else if indexPath.row == 2 {
-            cellHeight = 480
+            cellHeight = 560
         }
         return CGSize(width: view.frame.width, height: cellHeight)
     }
@@ -107,50 +106,32 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         isBeingOpened = !sectionDataTest[indexPath.section].opened
         if indexPath.row == 0 {
             if sectionDataTest[indexPath.section].opened == true {
+                
                 sectionDataTest[indexPath.section].opened = false
                 
-                self.newCollapse()
-                collectionView.performBatchUpdates({
-                    let sections = IndexSet.init(integer: indexPath.section)
-                    collectionView.reloadSections(sections)
-                }, completion: nil)
                 
-//                UIView.transition(with: collectionView, duration: 0.5, options: .curveEaseIn, animations: {
-//                    let sections = IndexSet.init(integer: indexPath.section)
-//                    collectionView.reloadSections(sections)
-//                }, completion: nil)
-                
-            } else {
-                sectionDataTest[indexPath.section].opened = true
-//                collectionView.reload
-//                UIView.transition(with: collectionView, duration: 0.5, options: .curveEaseOut, animations: {
-//                    let sections = IndexSet.init(integer: indexPath.section)
-//                    collectionView.reloadSections(sections)
-//
-//                }, completion: nil)
-                
-//                UIView.performWithoutAnimation {
-//                    let sections = IndexSet.init(integer: indexPath.section)
-//                    collectionView.reloadSections(sections)
-//                }
                 collectionView.performBatchUpdates({
                     let sections = IndexSet.init(integer: indexPath.section)
                     collectionView.reloadSections(sections)
                 }) { (true) in
-                    self.scrollToTargetCell(to: indexPath, completion: {
-                        self.newExpand()
+                    self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
+                        self.newCollapse()
                     })
                 }
                 
-//                self.scrollToTargetCell(to: indexPath) {
-//                    self.newExpand()
-//                    collectionView.performBatchUpdates({
-//                        let sections = IndexSet.init(integer: indexPath.section)
-//                        collectionView.reloadSections(sections)
-//                    }, completion: nil)
-//                }
+            } else {
                 
+                sectionDataTest[indexPath.section].opened = true
                 
+                collectionView.performBatchUpdates({
+                    let sections = IndexSet.init(integer: indexPath.section)
+                    collectionView.reloadSections(sections)
+                }) { (true) in
+                    self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
+                        self.newExpand()
+                    })
+                }
+
             }
         }
     }
@@ -214,14 +195,14 @@ class StackingLayout: UICollectionViewFlowLayout {
             } else {
                 attribute.zIndex = (attribute.indexPath.row) * -1
             }
-            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex)")
+//            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex)")
         }
         isBeingOpened = false
         return allAttributes
     }
     
-    override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
-        print(updateItems[0].updateAction)
+    override func prepare() {
+        print("prepare called")
     }
 
     override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -229,17 +210,7 @@ class StackingLayout: UICollectionViewFlowLayout {
             return nil
         }
         
-//        if (itemIndexPath.section - 1 >= 0) && (itemIndexPath.row == 0)   {
-//            guard let isSectionAboveOpened = delegate?.isSectionOpened(at: itemIndexPath.section - 1) else {
-//                return nil
-//            }
-//
-//            if isSectionAboveOpened {
-//                attribute.zIndex = (attribute.indexPath.section)
-//            }
-//
-//            print(isSectionAboveOpened, "section \(itemIndexPath.section)")
-//        }
+        
         
         return attribute
     }
