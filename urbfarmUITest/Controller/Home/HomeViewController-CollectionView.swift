@@ -22,7 +22,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if sectionDataTest[section].opened == true {
-            return 3
+            return sectionDataTest[section].cellData.count + 1
         } else {
             return 1
         }
@@ -109,7 +109,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 
                 sectionDataTest[indexPath.section].opened = false
                 
-                
+
                 self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
                     collectionView.performBatchUpdates({
                         let sections = IndexSet.init(integer: indexPath.section)
@@ -118,10 +118,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                         
                     }
                 })
-
-                
-                
-                
                 self.newCollapse()
                 
             } else {
@@ -129,18 +125,30 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 sectionDataTest[indexPath.section].opened = true
                 
                 self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
-                    collectionView.performBatchUpdates({
-                        let sections = IndexSet.init(integer: indexPath.section)
-                        collectionView.reloadSections(sections)
-                    }) { (true) in
-                        
-                        
+//                    collectionView.performBatchUpdates({
+//                        let sections = IndexSet.init(integer: indexPath.section)
+//                        collectionView.reloadSections(sections)
+//
+//
+//                    }) { (true) in
+//
+//
+//                    }
+//                    self.sectionDataTest[indexPath.section].cellData
+                    
+                    self.sectionDataTest[indexPath.section].cellData.append("bannamna")
+                    self.sectionDataTest[indexPath.section].cellData.append("new shits")
+                    
+                    var indices = [IndexPath]()
+                    
+                    for i in 1 ... self.sectionDataTest[indexPath.section].cellData.count {
+                        let newIndex = IndexPath(row: i, section: indexPath.section)
+                        indices.append(newIndex)
                     }
                     
+                    collectionView.insertItems(at: indices)
+                    
                 })
-                
-                
-                
                 self.newExpand()
 
             }
