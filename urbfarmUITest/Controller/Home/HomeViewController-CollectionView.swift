@@ -104,20 +104,21 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
 //        let cell = collectionView.cellForItem(at: indexPath)
 //        print(cell, "zIndex \(cell.attri)")
-        
+        isBeingOpened = !sectionDataTest[indexPath.section].opened
         if indexPath.row == 0 {
             if sectionDataTest[indexPath.section].opened == true {
                 sectionDataTest[indexPath.section].opened = false
                 
-//                collectionView.performBatchUpdates({
-//                    let sections = IndexSet.init(integer: indexPath.section)
-//                    collectionView.reloadSections(sections)
-//                }, completion: nil)
-                
-                UIView.transition(with: collectionView, duration: 0.5, options: .curveEaseIn, animations: {
+                self.newCollapse()
+                collectionView.performBatchUpdates({
                     let sections = IndexSet.init(integer: indexPath.section)
                     collectionView.reloadSections(sections)
                 }, completion: nil)
+                
+//                UIView.transition(with: collectionView, duration: 0.5, options: .curveEaseIn, animations: {
+//                    let sections = IndexSet.init(integer: indexPath.section)
+//                    collectionView.reloadSections(sections)
+//                }, completion: nil)
                 
             } else {
                 sectionDataTest[indexPath.section].opened = true
@@ -132,11 +133,24 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 //                    let sections = IndexSet.init(integer: indexPath.section)
 //                    collectionView.reloadSections(sections)
 //                }
-                
                 collectionView.performBatchUpdates({
                     let sections = IndexSet.init(integer: indexPath.section)
                     collectionView.reloadSections(sections)
-                }, completion: nil)
+                }) { (true) in
+                    self.scrollToTargetCell(to: indexPath, completion: {
+                        self.newExpand()
+                    })
+                }
+                
+//                self.scrollToTargetCell(to: indexPath) {
+//                    self.newExpand()
+//                    collectionView.performBatchUpdates({
+//                        let sections = IndexSet.init(integer: indexPath.section)
+//                        collectionView.reloadSections(sections)
+//                    }, completion: nil)
+//                }
+                
+                
             }
         }
     }
@@ -157,7 +171,7 @@ class ContentCell: RoundedCell {
 class BottomContentCell: RoundedCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = #colorLiteral(red: 0.1778279543, green: 0.0857173875, blue: 0.2522138655, alpha: 1)
+        self.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
     }
     
     override func roundCorner() {
@@ -171,12 +185,12 @@ class BottomContentCell: RoundedCell {
 
 //Delegate to retrieve section data
 protocol StackingLayoutDelegate: class {
-    func isSectionOpened(at: Int) -> Bool
+    func isSectionOpened(at: Int) -> (Bool, Int)
 }
 
 extension HomeViewController: StackingLayoutDelegate {
-    func isSectionOpened(at: Int) -> Bool {
-        return sectionDataTest[at].opened
+    func isSectionOpened(at: Int) -> (Bool, Int) {
+        return (sectionDataTest[at].opened, at)
     }
 }
 
@@ -192,14 +206,22 @@ class StackingLayout: UICollectionViewFlowLayout {
         }
         for attribute in allAttributes {
             if attribute.indexPath.row == 0 {
-                attribute.zIndex = attribute.indexPath.section * -1
+                if (isBeingOpened){
+                    attribute.zIndex = 0
+                } else {
+                    attribute.zIndex = attribute.indexPath.section * -1
+                }
             } else {
                 attribute.zIndex = (attribute.indexPath.row) * -1
             }
-//            print("zindex: \(attribute.zIndex), section: \(attribute.indexPath.section), row: \(attribute.indexPath.row)")
-//            print("attribute for element: \(attribute.zIndex)")
+            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex)")
         }
+        isBeingOpened = false
         return allAttributes
+    }
+    
+    override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+        print(updateItems[0].updateAction)
     }
 
     override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -207,17 +229,17 @@ class StackingLayout: UICollectionViewFlowLayout {
             return nil
         }
         
-        if (itemIndexPath.section - 1 >= 0) && (itemIndexPath.row == 0)   {
-            guard let isSectionAboveOpened = delegate?.isSectionOpened(at: itemIndexPath.section - 1) else {
-                return nil
-            }
-            
-            if isSectionAboveOpened {
-                attribute.zIndex = (attribute.indexPath.section)
-            }
-            
-            print(isSectionAboveOpened, "section \(itemIndexPath.section)")
-        }
+//        if (itemIndexPath.section - 1 >= 0) && (itemIndexPath.row == 0)   {
+//            guard let isSectionAboveOpened = delegate?.isSectionOpened(at: itemIndexPath.section - 1) else {
+//                return nil
+//            }
+//
+//            if isSectionAboveOpened {
+//                attribute.zIndex = (attribute.indexPath.section)
+//            }
+//
+//            print(isSectionAboveOpened, "section \(itemIndexPath.section)")
+//        }
         
         return attribute
     }
