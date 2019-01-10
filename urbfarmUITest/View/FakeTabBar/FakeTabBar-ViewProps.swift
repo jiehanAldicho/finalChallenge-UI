@@ -53,26 +53,7 @@ class FakeTabBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupCollectionViewConstraint()  {
-        let collectionWidth =
-            (Int(PropsConstant.MenuCell.width.rawValue) * 3) +
-            (Int(PropsConstant.MenuCollectionView.spacing.rawValue) * 2)
-        
-        menucCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        menucCollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
-        menucCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
-        menucCollectionView.widthAnchor.constraint(equalToConstant: CGFloat(collectionWidth)).isActive = true
-        menucCollectionView.heightAnchor.constraint(equalToConstant: 65).isActive = true
-    }
     
-    private func setupView() {
-        self.backgroundColor = .white
-        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 160)
-        
-        self.layer.cornerRadius = self.frame.height * 0.6
-        self.layer.maskedCorners = [.layerMaxXMaxYCorner]
-        self.clipsToBounds = true
-    }
 }
 
 

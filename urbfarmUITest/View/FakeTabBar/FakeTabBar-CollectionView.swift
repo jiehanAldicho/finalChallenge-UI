@@ -26,68 +26,76 @@ extension FakeTabBar: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
         return CGSize(width: w, height: h)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let remainingWidth = collectionView.frame.width - CGFloat(100
-            * menus.count)
-        print(remainingWidth)
-//        let inset = UIEdgeInsets(top: 0, left: remainingWidth/2, bottom: 0, right: remainingWidth / 2)
-        let inset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        return inset
-    }
-    
     //TODO: Refactor animation functions
     
-    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MenuCell
         
-        //UILabel color is un-animatable, use cross dissolve transition instead
+        //Border animation have to use CABasic animation since it's layer and not UIView
         let colorAnimation = CABasicAnimation(keyPath: "borderColor")
-        
         colorAnimation.fromValue = UIColor.lightGray.cgColor
         colorAnimation.toValue = UIColor.darkGray.cgColor
-        colorAnimation.duration = 1
+        colorAnimation.duration = 0.5
         colorAnimation.isRemovedOnCompletion = false
         colorAnimation.fillMode = .forwards
-        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
+        
+        let borderWidthAnimation = CABasicAnimation(keyPath: "borderWidth")
+        borderWidthAnimation.fromValue = 2
+        borderWidthAnimation.toValue = 2.5
+        borderWidthAnimation.duration = 0.5
+        borderWidthAnimation.isRemovedOnCompletion = false
+        borderWidthAnimation.fillMode = .forwards
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
         cell.circleBG.layer.add(colorAnimation, forKey: "borderColor")
+        cell.circleBG.layer.add(borderWidthAnimation, forKey: "borderWidth")
         
         //UILabel color is un-animatable, use cross dissolve transition instead
-        UIView.transition(with: cell.menuLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: cell.menuLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
             cell.menuLabel.textColor = .darkGray
         }, completion: nil)
         
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             cell.menuIcon.tintColor = .darkGray
-//            cell.circleBG.layer.borderColor = UIColor.darkGray.cgColor
-//            cell.menuLabel.textColor = .darkGray
-        }
-        
+            cell.menuLabel.font = UIFont(name: "Avenir-Black", size: 11)
+        }, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MenuCell
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             cell.menuIcon.tintColor = .lightGray
-//            cell.circleBG.layer.borderColor = UIColor.lightGray.cgColor
-//            cell.menuLabel.textColor = .lightGray
-        }
-        
-        //UILabel color is un-animatable, use cross dissolve transition instead
-        UIView.transition(with: cell.menuLabel, duration: 1, options: .transitionCrossDissolve, animations: {
-            cell.menuLabel.textColor = .lightGray
+            cell.menuLabel.font = UIFont(name: "Avenir-Heavy", size: 11)
         }, completion: nil)
         
         //UILabel color is un-animatable, use cross dissolve transition instead
-        let colorAnimation = CABasicAnimation(keyPath: "borderColor")
+        UIView.transition(with: cell.menuLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            cell.menuLabel.textColor = .lightGray
+        }, completion: nil)
         
+        //Border animation have to use CABasic animation since it's layer and not UIView
+        let colorAnimation = CABasicAnimation(keyPath: "borderColor")
         colorAnimation.fromValue = UIColor.darkGray.cgColor
         colorAnimation.toValue = UIColor.lightGray.cgColor
-        colorAnimation.duration = 1
+        colorAnimation.duration = 0.5
         colorAnimation.isRemovedOnCompletion = false
         colorAnimation.fillMode = .forwards
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
+        let borderWidthAnimation = CABasicAnimation(keyPath: "borderWidth")
+        borderWidthAnimation.fromValue = 2.5
+        borderWidthAnimation.toValue = 2
+        borderWidthAnimation.duration = 0.5
+        borderWidthAnimation.isRemovedOnCompletion = false
+        borderWidthAnimation.fillMode = .forwards
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
         cell.circleBG.layer.add(colorAnimation, forKey: "borderColor")
+        cell.circleBG.layer.add(borderWidthAnimation, forKey: "borderWidth")
     }
     
 }

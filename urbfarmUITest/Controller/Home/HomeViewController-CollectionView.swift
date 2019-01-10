@@ -93,10 +93,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 sectionDataTest[indexPath.section].opened = true
                 
                 self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
-                    cell.showBackButton()
                     
-
+                    
                 })
+                cell.showBackButton()
                 
                 //TODO: Refactor these shits
                 self.sectionDataTest[indexPath.section].cellData.append("bannamna")
@@ -117,6 +117,29 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
             }
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        //TODO: Fix flagging and find ways to access visible cells
+        
+//        guard let indexPath = customCollectionView.indexPathForItem(at: CGPoint(x: 0, y: scrollView.contentOffset.y)) else {
+//            return
+//        }
+//        guard let item = customCollectionView.cellForItem(at: indexPath) else {
+//            return
+//        }
+//        print(item.frame)
+        
+//        let topMostCellY: CGFloat = 400 //Get the highest cell minY when it's expanded
+//        let bottomMostCellY: CGFloat = 500 //Get the lowest cell maxY when it's expanded
+//
+//        if scrollView.contentOffset.y < topMostCellY {
+//            scrollView.contentOffset.y = topMostCellY
+//        } else if scrollView.contentOffset.y > bottomMostCellY {
+//            scrollView.contentOffset.y = bottomMostCellY
+//        }
+        
     }
     
 }
