@@ -9,13 +9,7 @@
 import UIKit
 
 protocol RoundedCellDelegate: class {
-    func backButtonPressed(onCell cell: RoundedCell)
-}
-
-extension HomeViewController: RoundedCellDelegate {
-    func backButtonPressed(onCell: RoundedCell)  {
-        collapseCell()
-    }
+    func backButtonPressed(onCell: RoundedCell)
 }
 
 class RoundedCell: UICollectionViewCell {
@@ -64,11 +58,12 @@ class RoundedCell: UICollectionViewCell {
     }
     
     @objc func handleBackButtonPressed() {
-        delegate?.backButtonPressed(onCell: self)
         UIView.animate(withDuration: 1) {
             self.backButton.alpha = 0
             self.cellTitleLabel.alpha = 0
         }
+        
+        delegate?.backButtonPressed(onCell: self)
     }
     
     func showBackButton() {

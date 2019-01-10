@@ -84,82 +84,16 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.cellForItem(at: indexPath) as! RoundedCell
-//        let cellHeight = cell.frame.height
-//        let yOffset = ((cellHeight) * CGFloat(indexPath.section)) - ((cellHeight/3) * CGFloat(indexPath.section - 1))
-        
-        //TODO: Scroll the collection view first and then animate it
-//        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        let cell = collectionView.cellForItem(at: indexPath) as! RoundedCell
 
-//        self.expandCell(collectionViewYOffset: yOffset)
-//        cell.showBackButton()
-
-        
-//        self.scrollToTargetCell(to: indexPath) {
-////            self.expandCell(collectionViewYOffset: yOffset)
-////            cell.showBackButton()
-////            self.tabBar.alpha = 0
-//        }
-        
-//        let cell = collectionView.cellForItem(at: indexPath)
-//        print(cell, "zIndex \(cell.attri)")
         isBeingOpened = !sectionDataTest[indexPath.section].opened
         if indexPath.row == 0 {
-            if sectionDataTest[indexPath.section].opened == true {
-                
-                sectionDataTest[indexPath.section].opened = false
-                
-
-                self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
-//                    collectionView.performBatchUpdates({
-//                        let sections = IndexSet.init(integer: indexPath.section)
-//                        collectionView.reloadSections(sections)
-//                    }) { (true) in
-//
-//                    }
-                    
-                    
-                    
-                    var indices = [IndexPath]()
-                    
-                    for i in 1 ... self.sectionDataTest[indexPath.section].cellData.count {
-                        let newIndex = IndexPath(row: i, section: indexPath.section)
-                        indices.append(newIndex)
-                    }
-                    
-//                    collectionView.deleteItems(at: indices)
-                    
-//                    UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
-//
-//                    }, completion: nil)
-                    
-                    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-                        collectionView.deleteItems(at: indices)
-                    }, completion: { (true) in
-                        self.sectionDataTest[indexPath.section].cellData.removeAll()
-                    })
-                    
-                    
-                    
-                })
-                self.newCollapse()
-                
-            } else {
+            if sectionDataTest[indexPath.section].opened == false {
                 
                 sectionDataTest[indexPath.section].opened = true
                 
                 self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
-//                    collectionView.performBatchUpdates({
-//                        let sections = IndexSet.init(integer: indexPath.section)
-//                        collectionView.reloadSections(sections)
-//
-//
-//                    }) { (true) in
-//
-//
-//                    }
-//                    self.sectionDataTest[indexPath.section].cellData
-                    
+                    cell.showBackButton()
                     //TODO: Refactor these shits
                     self.sectionDataTest[indexPath.section].cellData.append("bannamna")
                     self.sectionDataTest[indexPath.section].cellData.append("new shits")
@@ -183,6 +117,41 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
+}
+
+extension HomeViewController: RoundedCellDelegate {
+    
+    func backButtonPressed(onCell: RoundedCell)  {
+        //Trigger cell collapse here
+        let collectionView = customCollectionView
+        guard let indexPath = collectionView.indexPath(for: onCell) else {
+            print("indexPath not found")
+            return
+        }
+        
+        sectionDataTest[indexPath.section].opened = false
+        
+        self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
+            
+            var indices = [IndexPath]()
+            
+            for i in 1 ... self.sectionDataTest[indexPath.section].cellData.count {
+                let newIndex = IndexPath(row: i, section: indexPath.section)
+                indices.append(newIndex)
+            }
+            
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+                collectionView.deleteItems(at: indices)
+            }, completion: { (true) in
+                self.sectionDataTest[indexPath.section].cellData.removeAll()
+            })
+            
+            
+        })
+        self.newCollapse()
+
+    }
 }
 
 class ContentCell: RoundedCell {
