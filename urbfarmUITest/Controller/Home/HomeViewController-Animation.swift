@@ -13,9 +13,15 @@ extension HomeViewController {
     
     func newCollapse() {
         tabBarYConstraint.constant = 0
-        UIView.animate(withDuration: 1) {
+//        UIView.animate(withDuration: 1) {
+//            self.view.layoutIfNeeded()
+//        }
+        
+        
+        //Checking which animation is better
+        UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
-        }
+        }, completion: nil)
     }
     
     func newExpand() {
@@ -27,7 +33,7 @@ extension HomeViewController {
     
     func scrollToTargetCell(to indexPath: IndexPath, yOffset: CGFloat, completion: @escaping () -> ()) {
         
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.9, delay: 0, options: .curveEaseInOut, animations: {
             
             let selectedCell = self.customCollectionView.cellForItem(at: indexPath)
             guard let cellOffset = selectedCell?.frame else {

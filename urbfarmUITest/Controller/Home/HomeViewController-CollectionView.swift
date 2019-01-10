@@ -94,23 +94,25 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 
                 self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
                     cell.showBackButton()
-                    //TODO: Refactor these shits
-                    self.sectionDataTest[indexPath.section].cellData.append("bannamna")
-                    self.sectionDataTest[indexPath.section].cellData.append("new shits")
                     
-                    var indices = [IndexPath]()
-                    
-                    for i in 1 ... self.sectionDataTest[indexPath.section].cellData.count {
-                        let newIndex = IndexPath(row: i, section: indexPath.section)
-                        indices.append(newIndex)
-                    }
-                    
-                    UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut, animations: {
-                        collectionView.insertItems(at: indices)
-                    }, completion: nil)
-                    
-                    
+
                 })
+                
+                //TODO: Refactor these shits
+                self.sectionDataTest[indexPath.section].cellData.append("bannamna")
+                self.sectionDataTest[indexPath.section].cellData.append("new shits")
+                
+                var indices = [IndexPath]()
+                
+                for i in 1 ... self.sectionDataTest[indexPath.section].cellData.count {
+                    let newIndex = IndexPath(row: i, section: indexPath.section)
+                    indices.append(newIndex)
+                }
+                
+                UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut, animations: {
+                    collectionView.insertItems(at: indices)
+                }, completion: nil)
+                
                 self.newExpand()
 
             }
@@ -133,22 +135,25 @@ extension HomeViewController: RoundedCellDelegate {
         
         self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
             
-            var indices = [IndexPath]()
-            
-            for i in 1 ... self.sectionDataTest[indexPath.section].cellData.count {
-                let newIndex = IndexPath(row: i, section: indexPath.section)
-                indices.append(newIndex)
-            }
-            
-            
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-                collectionView.deleteItems(at: indices)
-            }, completion: { (true) in
-                self.sectionDataTest[indexPath.section].cellData.removeAll()
-            })
+           
             
             
         })
+        
+        var indices = [IndexPath]()
+        
+        for i in 1 ... self.sectionDataTest[indexPath.section].cellData.count {
+            let newIndex = IndexPath(row: i, section: indexPath.section)
+            indices.append(newIndex)
+        }
+        
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            collectionView.deleteItems(at: indices)
+        }, completion: { (true) in
+            self.sectionDataTest[indexPath.section].cellData.removeAll()
+        })
+        
         self.newCollapse()
 
     }
