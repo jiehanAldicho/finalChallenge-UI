@@ -54,7 +54,7 @@ class ContainerCell: UICollectionViewCell {
     }
     
     func setupData() {
-        for _ in 1...5 {
+        for _ in 1...50 {
             var data = SectionData()
             data.title = "Nasi Goreng"
             data.opened = false

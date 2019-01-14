@@ -154,7 +154,7 @@ extension HomeViewController: RoundedCellDelegate {
         //Trigger cell collapse here
         let collectionView = customCollectionView
         guard let indexPath = collectionView.indexPath(for: onCell) else {
-            print("indexPath not found")
+//            print("indexPath not found")
             return
         }
         
@@ -175,6 +175,7 @@ extension HomeViewController: RoundedCellDelegate {
             collectionView.deleteItems(at: indices)
         }, completion: { (true) in
             self.sectionDataTest[indexPath.section].cellData.removeAll()
+            self.customCollectionView.setNeedsLayout()
         })
         
         self.newCollapse()
@@ -198,7 +199,7 @@ extension HomeViewController: StackingLayoutDelegate {
 class ContainerLayout: UICollectionViewFlowLayout {
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         guard let containerCollectionView = self.collectionView else {
-            print("collection view was nil")
+//            print("collection view was nil")
             return proposedContentOffset
         }
         
@@ -273,7 +274,7 @@ class StackingLayout: UICollectionViewFlowLayout {
 //        }
         
         for attribute in allAttributes {
-            print("Attribute in section \(attribute.indexPath.section), row: \(attribute.indexPath.row) with zIndex: \(attribute.zIndex)")
+//            print("Attribute in section \(attribute.indexPath.section), row: \(attribute.indexPath.row) with zIndex: \(attribute.zIndex)")
 //            if attribute.indexPath.row == 0 {
 //                if (isBeingOpened && sectionDataTest[attribute.indexPath.section].opened){
 ////                    attribute.zIndex = 0
@@ -288,7 +289,7 @@ class StackingLayout: UICollectionViewFlowLayout {
 //            } else {
 //                attribute.zIndex = (attribute.indexPath.row) * -1
 //            }
-            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex)")
+//            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex)")
 //            print("isBeingOpened \(isBeingOpened)")
         }
 
@@ -299,7 +300,7 @@ class StackingLayout: UICollectionViewFlowLayout {
         guard let attribute = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath) else {
             return nil
         }
-        print("dissapearing cell -> section: \(itemIndexPath.section), row \(itemIndexPath.row) zindex \(attribute.zIndex)")
+//        print("dissapearing cell -> section: \(itemIndexPath.section), row \(itemIndexPath.row) zindex \(attribute.zIndex)")
         return attribute
     }
     

@@ -24,13 +24,14 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     //Line spacing for section
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            if section != 0 {
-                if sectionDataTest[section - 1].opened == true {
-                    return UIEdgeInsets(top: 100, left: 0, bottom: -100, right: 0)
-    
-                }
-            }
-    
+            print("insetForSectionAt being called")
+//            if section != 0 {
+//                if sectionDataTest[section - 1].opened == true {
+//                    return UIEdgeInsets(top: 100, left: 0, bottom: -100, right: 0)
+//
+//                }
+//            }
+//
             return UIEdgeInsets(top: 0, left: 0, bottom: -100, right: 0)
         }
     
@@ -56,13 +57,22 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-                var cellHeight: CGFloat = 300
-                if indexPath.row == 1 {
-                    cellHeight = 250
-                } else if indexPath.row == 2 {
-                    cellHeight = 565 //TODO: Calculate the remaining empty space
-                }
+        print("sizeForItemAt being called")
+        var cellHeight: CGFloat = 300
+
+        if isBeingOpened {
+            if indexPath.row == 1 {
+                cellHeight = 250
                 return CGSize(width: self.frame.width, height: cellHeight)
+            } else if indexPath.row == 2 {
+                cellHeight = 665 //TODO: Calculate the remaining empty space
+                return CGSize(width: self.frame.width, height: cellHeight)
+            } else {
+                return CGSize(width: self.frame.width, height: cellHeight)
+            }
+        } else {
+            return CGSize(width: self.frame.width, height: cellHeight)
+        }
     }
     
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -75,8 +85,7 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
                     isBeingOpened = true
     
                     self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
-    
-    
+                        
                     })
                     cell.showBackButton()
     
@@ -131,14 +140,16 @@ extension ContainerCell: RoundedCellDelegate {
         //Trigger cell collapse here
         let collectionView = customCollectionView
         guard let indexPath = collectionView.indexPath(for: onCell) else {
-            print("indexPath not found")
+//            print("indexPath not found")
             return
         }
         
+        isBeingOpened = false
         sectionDataTest[indexPath.section].opened = false
-        
+//        collectionView.reloadData()
+
 //        self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
-//            
+//
 //        })
         
         var indices = [IndexPath]()
@@ -147,15 +158,19 @@ extension ContainerCell: RoundedCellDelegate {
             let newIndex = IndexPath(row: i, section: indexPath.section)
             indices.append(newIndex)
         }
+    
+//        print("isBeingOpened called from back button: \(isBeingOpened)")
         
-        isBeingOpened = false
-        print("isBeingOpened called from back button: \(isBeingOpened)")
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-            collectionView.deleteItems(at: indices)
+//            print("asdasdads: \(indices)")
+//            collectionView.deleteItems(at: indices)
+            self.customCollectionView.reloadData()
+
         }, completion: { (true) in
             sectionDataTest[indexPath.section].cellData.removeAll()
         })
+        
         
         self.newCollapse()
         
