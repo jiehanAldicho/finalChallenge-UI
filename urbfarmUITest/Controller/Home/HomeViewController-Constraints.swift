@@ -9,12 +9,21 @@
 import UIKit
 
 extension HomeViewController {
+    func setupContainerCollectionViewConstraint() {
+        containerCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        containerCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        containerCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        containerCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        containerCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+    }
+    
+    //Will be anchored to cell
     func setupCollectionViewConstraint() {
         customCollectionView.translatesAutoresizingMaskIntoConstraints = false
         customCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         customCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         customCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        
+
         collectionViewYConstraint = customCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
         collectionViewYConstraint.isActive = true
     }

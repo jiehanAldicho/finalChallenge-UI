@@ -13,12 +13,6 @@ extension HomeViewController {
     
     func newCollapse() {
         tabBarYConstraint.constant = 0
-//        UIView.animate(withDuration: 1) {
-//            self.view.layoutIfNeeded()
-//        }
-        
-        
-        //Checking which animation is better
         UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)

@@ -14,10 +14,12 @@ extension HomeViewController {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.6065704226, green: 0.6181306243, blue: 0.7435260415, alpha: 1)
         
-        view.addSubview(customCollectionView)
+        view.addSubview(containerCollectionView)
+//        view.addSubview(customCollectionView)
         view.addSubview(tabBar)
         
-        setupCollectionViewConstraint()
+        setupContainerCollectionViewConstraint()
+//        setupCollectionViewConstraint()
         setupTabBarConstraint()
         
         setupData()

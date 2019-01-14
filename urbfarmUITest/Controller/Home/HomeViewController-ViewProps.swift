@@ -10,8 +10,26 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    lazy var containerCollectionView: UICollectionView = {
+//        let layout = UICollectionViewFlowLayout()
+        let layout = ContainerLayout()
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .horizontal
+        
+        let colView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        colView.dataSource = self
+        colView.delegate = self
+        colView.backgroundColor = .clear
+        colView.contentInsetAdjustmentBehavior = .never
+        colView.decelerationRate = UIScrollView.DecelerationRate.fast
+        
+        colView.register(ContainerCell.self, forCellWithReuseIdentifier: "containerCell")
+        
+        return colView
+    }()
+    
     lazy var customCollectionView: UICollectionView = {
-//        var colView = UICollectionView()
         let layout = StackingLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = -100
