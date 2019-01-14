@@ -137,9 +137,9 @@ extension ContainerCell: RoundedCellDelegate {
         
         sectionDataTest[indexPath.section].opened = false
         
-        self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
-            
-        })
+//        self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
+//            
+//        })
         
         var indices = [IndexPath]()
         

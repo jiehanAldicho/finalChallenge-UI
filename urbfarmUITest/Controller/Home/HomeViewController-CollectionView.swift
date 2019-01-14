@@ -254,7 +254,9 @@ class StackingLayout: UICollectionViewFlowLayout {
 //            attribute.zIndex = (attribute.indexPath.row) * -1
 //        }
         
-        attribute.zIndex = (attribute.indexPath.row) * -1 - sectionDataTest.count
+        if (attribute.indexPath.row != 0) {
+            attribute.zIndex = (attribute.indexPath.row) * -1 - sectionDataTest.count
+        }
     
         return attribute
     }
@@ -272,20 +274,22 @@ class StackingLayout: UICollectionViewFlowLayout {
         
         for attribute in allAttributes {
             print("Attribute in section \(attribute.indexPath.section), row: \(attribute.indexPath.row) with zIndex: \(attribute.zIndex)")
-            if attribute.indexPath.row == 0 {
-                if (isBeingOpened && sectionDataTest[attribute.indexPath.section].opened){
-                    attribute.zIndex = 0
-//                    print("Attribute in section \(attribute.indexPath.section), row: \(attribute.indexPath.row) with zIndex: \(attribute.zIndex)")
-                    isBeingOpened = false
-                } else {
-                    attribute.zIndex = attribute.indexPath.section * -1
-                }
-            }
+//            if attribute.indexPath.row == 0 {
+//                if (isBeingOpened && sectionDataTest[attribute.indexPath.section].opened){
+////                    attribute.zIndex = 0
+////                    print("Attribute in section \(attribute.indexPath.section), row: \(attribute.indexPath.row) with zIndex: \(attribute.zIndex)")
+//                    isBeingOpened = false
+//                } else {
+////                    attribute.zIndex = attribute.indexPath.section * -1
+//                }
+//            }
+            
+            attribute.zIndex = attribute.indexPath.section * -1
 //            } else {
 //                attribute.zIndex = (attribute.indexPath.row) * -1
 //            }
-            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex), isOpened \(sectionDataTest[attribute.indexPath.section].opened)")
-            print("isBeingOpened \(isBeingOpened)")
+            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex)")
+//            print("isBeingOpened \(isBeingOpened)")
         }
 
         return allAttributes
