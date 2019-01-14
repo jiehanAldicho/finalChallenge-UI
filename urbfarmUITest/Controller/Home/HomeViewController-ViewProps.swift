@@ -52,6 +52,7 @@ class HomeViewController: UIViewController {
     
     var tabBar: FakeTabBar = {
         let tab = FakeTabBar()
+        tab.alpha = 0
         return tab
     }()
     

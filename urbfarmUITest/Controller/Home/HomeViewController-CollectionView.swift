@@ -171,7 +171,6 @@ extension HomeViewController: RoundedCellDelegate {
             indices.append(newIndex)
         }
         
-        
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             collectionView.deleteItems(at: indices)
         }, completion: { (true) in
@@ -216,7 +215,7 @@ class ContainerLayout: UICollectionViewFlowLayout {
             let itemOffset = layoutAttributes.frame.origin.x //Position of the cell
             let itemCenter = layoutAttributes.frame.width / 2
             let distanceToCenter = itemCenter - screenCenter
-            print(distanceToCenter, "distance toc enter ? constat")
+//            print(distanceToCenter, "distance toc enter ? constat")
             if fabsf(Float(itemOffset - horizontalOffset)) < fabsf(Float(offsetAdjustment)) {
                 offsetAdjustment = itemOffset - horizontalOffset + distanceToCenter
                 //                offsetAdjustment = itemCenter - screenCenter
@@ -239,25 +238,68 @@ class StackingLayout: UICollectionViewFlowLayout {
     
     weak var delegate: StackingLayoutDelegate?
     
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard let attribute = super.layoutAttributesForItem(at: indexPath) else {
+            return nil
+        }
+        
+//        if attribute.indexPath.row == 0 {
+//            print("Fakyu:", isBeingOpened, sectionDataTest[attribute.indexPath.section].opened)
+//            if (isBeingOpened && sectionDataTest[attribute.indexPath.section].opened){
+//                attribute.zIndex = 0
+//            } else {
+//                attribute.zIndex = attribute.indexPath.section * -1
+//            }
+//        } else {
+//            attribute.zIndex = (attribute.indexPath.row) * -1
+//        }
+        
+        attribute.zIndex = (attribute.indexPath.row) * -1 - sectionDataTest.count
+    
+        return attribute
+    }
+    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let allAttributes = super.layoutAttributesForElements(in: rect) else {
             return nil
         }
+        
+//        for attribute in allAttributes {
+//            if !(isBeingOpened) && attribute.indexPath.row == 0 {
+//                attribute.zIndex = attribute.indexPath.section * -1
+//            }
+//        }
+        
         for attribute in allAttributes {
+            print("Attribute in section \(attribute.indexPath.section), row: \(attribute.indexPath.row) with zIndex: \(attribute.zIndex)")
             if attribute.indexPath.row == 0 {
-                if (isBeingOpened){
+                if (isBeingOpened && sectionDataTest[attribute.indexPath.section].opened){
                     attribute.zIndex = 0
+//                    print("Attribute in section \(attribute.indexPath.section), row: \(attribute.indexPath.row) with zIndex: \(attribute.zIndex)")
+                    isBeingOpened = false
                 } else {
                     attribute.zIndex = attribute.indexPath.section * -1
                 }
-            } else {
-                attribute.zIndex = (attribute.indexPath.row) * -1
             }
-            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex), isBeingOpened \(isBeingOpened)")
+//            } else {
+//                attribute.zIndex = (attribute.indexPath.row) * -1
+//            }
+            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex), isOpened \(sectionDataTest[attribute.indexPath.section].opened)")
+            print("isBeingOpened \(isBeingOpened)")
         }
-        isBeingOpened = false
+
         return allAttributes
     }
+    
+    override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard let attribute = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath) else {
+            return nil
+        }
+        print("dissapearing cell -> section: \(itemIndexPath.section), row \(itemIndexPath.row) zindex \(attribute.zIndex)")
+        return attribute
+    }
+    
+    
     
     override func prepare() {
 //        print("prepare called")

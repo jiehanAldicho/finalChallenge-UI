@@ -30,7 +30,7 @@ class ContainerCell: UICollectionViewCell {
         return colView
     }()
     
-    var sectionDataTest = [SectionData]()
+//    var sectionDataTest = [SectionData]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
