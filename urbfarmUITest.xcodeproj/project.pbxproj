@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B91843AB21E460EB00BB48ED /* HomeViewController-Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91843AA21E460EB00BB48ED /* HomeViewController-Animation.swift */; };
-		B920946A21E3C60F0007A4EB /* HomeViewController-RoundedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920946921E3C60F0007A4EB /* HomeViewController-RoundedCell.swift */; };
+		B920946A21E3C60F0007A4EB /* RoundedCell-Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920946921E3C60F0007A4EB /* RoundedCell-Base.swift */; };
 		B938623721EC3686003A9137 /* ContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938623621EC3686003A9137 /* ContainerCell.swift */; };
 		B938623A21EC3D3A003A9137 /* ContainerCell-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938623921EC3D3A003A9137 /* ContainerCell-CollectionView.swift */; };
 		B94F568721E1E0F4003EB703 /* FakeTabBar-ViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F568621E1E0F4003EB703 /* FakeTabBar-ViewProps.swift */; };
@@ -17,6 +16,10 @@
 		B94F568E21E1E2CB003EB703 /* FakeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F568D21E1E2CB003EB703 /* FakeTabBar.swift */; };
 		B94F569021E1E6CD003EB703 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B94F568F21E1E6CD003EB703 /* AppIcon.xcassets */; };
 		B9A3A86621E5AF83005B7B88 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A3A86521E5AF83005B7B88 /* GlobalVariables.swift */; };
+		B9C47F0321EE03D0007D1E78 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C47F0221EE03D0007D1E78 /* ContentCell.swift */; };
+		B9C47F0521EE03D9007D1E78 /* ContentCell-Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C47F0421EE03D9007D1E78 /* ContentCell-Bottom.swift */; };
+		B9C47F0921EE044D007D1E78 /* ContainerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C47F0821EE044D007D1E78 /* ContainerLayout.swift */; };
+		B9C47F0B21EE046B007D1E78 /* StackingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C47F0A21EE046B007D1E78 /* StackingLayout.swift */; };
 		B9DE3B9521E0ABE100821C31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */; };
 		B9DE3B9721E0ABE100821C31 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3B9621E0ABE100821C31 /* MainTabBarController.swift */; };
 		B9DE3B9F21E0ABE200821C31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9DE3B9D21E0ABE200821C31 /* LaunchScreen.storyboard */; };
@@ -27,8 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B91843AA21E460EB00BB48ED /* HomeViewController-Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-Animation.swift"; sourceTree = "<group>"; };
-		B920946921E3C60F0007A4EB /* HomeViewController-RoundedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-RoundedCell.swift"; sourceTree = "<group>"; };
+		B920946921E3C60F0007A4EB /* RoundedCell-Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoundedCell-Base.swift"; sourceTree = "<group>"; };
 		B938623621EC3686003A9137 /* ContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCell.swift; sourceTree = "<group>"; };
 		B938623921EC3D3A003A9137 /* ContainerCell-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContainerCell-CollectionView.swift"; sourceTree = "<group>"; };
 		B94F568621E1E0F4003EB703 /* FakeTabBar-ViewProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeTabBar-ViewProps.swift"; sourceTree = "<group>"; };
@@ -37,6 +39,10 @@
 		B94F568D21E1E2CB003EB703 /* FakeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTabBar.swift; sourceTree = "<group>"; };
 		B94F568F21E1E6CD003EB703 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		B9A3A86521E5AF83005B7B88 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		B9C47F0221EE03D0007D1E78 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
+		B9C47F0421EE03D9007D1E78 /* ContentCell-Bottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentCell-Bottom.swift"; sourceTree = "<group>"; };
+		B9C47F0821EE044D007D1E78 /* ContainerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerLayout.swift; sourceTree = "<group>"; };
+		B9C47F0A21EE046B007D1E78 /* StackingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackingLayout.swift; sourceTree = "<group>"; };
 		B9DE3B9121E0ABE100821C31 /* urbfarmUITest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = urbfarmUITest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9DE3B9621E0ABE100821C31 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -59,13 +65,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B938623821EC3D06003A9137 /* SectionCell */ = {
+		B938623821EC3D06003A9137 /* Container */ = {
 			isa = PBXGroup;
 			children = (
-				B938623621EC3686003A9137 /* ContainerCell.swift */,
-				B938623921EC3D3A003A9137 /* ContainerCell-CollectionView.swift */,
+				B9C47EFF21EE0381007D1E78 /* ContainerCell */,
+				B9C47F0121EE0395007D1E78 /* RoundedCell */,
 			);
-			path = SectionCell;
+			path = Container;
 			sourceTree = "<group>";
 		};
 		B94F568821E1E234003EB703 /* FakeTabBar */ = {
@@ -85,6 +91,34 @@
 				B9A3A86521E5AF83005B7B88 /* GlobalVariables.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		B9C47EFF21EE0381007D1E78 /* ContainerCell */ = {
+			isa = PBXGroup;
+			children = (
+				B938623621EC3686003A9137 /* ContainerCell.swift */,
+				B938623921EC3D3A003A9137 /* ContainerCell-CollectionView.swift */,
+			);
+			path = ContainerCell;
+			sourceTree = "<group>";
+		};
+		B9C47F0121EE0395007D1E78 /* RoundedCell */ = {
+			isa = PBXGroup;
+			children = (
+				B920946921E3C60F0007A4EB /* RoundedCell-Base.swift */,
+				B9C47F0221EE03D0007D1E78 /* ContentCell.swift */,
+				B9C47F0421EE03D9007D1E78 /* ContentCell-Bottom.swift */,
+			);
+			path = RoundedCell;
+			sourceTree = "<group>";
+		};
+		B9C47F0721EE0431007D1E78 /* CustomLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				B9C47F0821EE044D007D1E78 /* ContainerLayout.swift */,
+				B9C47F0A21EE046B007D1E78 /* StackingLayout.swift */,
+			);
+			path = CustomLayouts;
 			sourceTree = "<group>";
 		};
 		B9DE3B8821E0ABE100821C31 = {
@@ -149,9 +183,8 @@
 				B9DE3BAA21E0ACB400821C31 /* HomeViewController-ViewProps.swift */,
 				B9DE3BB121E0AE4500821C31 /* HomeViewController-Constraints.swift */,
 				B9DE3BB321E0AE5F00821C31 /* HomeViewController-CollectionView.swift */,
-				B91843AA21E460EB00BB48ED /* HomeViewController-Animation.swift */,
-				B920946921E3C60F0007A4EB /* HomeViewController-RoundedCell.swift */,
-				B938623821EC3D06003A9137 /* SectionCell */,
+				B9C47F0721EE0431007D1E78 /* CustomLayouts */,
+				B938623821EC3D06003A9137 /* Container */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -230,17 +263,20 @@
 				B94F568A21E1E247003EB703 /* FakeTabBar-CollectionView.swift in Sources */,
 				B94F568721E1E0F4003EB703 /* FakeTabBar-ViewProps.swift in Sources */,
 				B938623721EC3686003A9137 /* ContainerCell.swift in Sources */,
+				B9C47F0521EE03D9007D1E78 /* ContentCell-Bottom.swift in Sources */,
 				B9DE3B9721E0ABE100821C31 /* MainTabBarController.swift in Sources */,
 				B9A3A86621E5AF83005B7B88 /* GlobalVariables.swift in Sources */,
 				B94F568E21E1E2CB003EB703 /* FakeTabBar.swift in Sources */,
+				B9C47F0321EE03D0007D1E78 /* ContentCell.swift in Sources */,
 				B9DE3BB421E0AE5F00821C31 /* HomeViewController-CollectionView.swift in Sources */,
-				B91843AB21E460EB00BB48ED /* HomeViewController-Animation.swift in Sources */,
 				B94F568C21E1E26A003EB703 /* FakeTabBar-MenuCell.swift in Sources */,
 				B9DE3B9521E0ABE100821C31 /* AppDelegate.swift in Sources */,
 				B938623A21EC3D3A003A9137 /* ContainerCell-CollectionView.swift in Sources */,
 				B9DE3BAB21E0ACB400821C31 /* HomeViewController-ViewProps.swift in Sources */,
-				B920946A21E3C60F0007A4EB /* HomeViewController-RoundedCell.swift in Sources */,
+				B9C47F0921EE044D007D1E78 /* ContainerLayout.swift in Sources */,
+				B920946A21E3C60F0007A4EB /* RoundedCell-Base.swift in Sources */,
 				B9DE3BB221E0AE4500821C31 /* HomeViewController-Constraints.swift in Sources */,
+				B9C47F0B21EE046B007D1E78 /* StackingLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

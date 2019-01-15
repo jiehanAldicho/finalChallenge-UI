@@ -161,14 +161,24 @@ extension ContainerCell: RoundedCellDelegate {
     
 //        print("isBeingOpened called from back button: \(isBeingOpened)")
         
+        sectionDataTest[indexPath.section].cellData.removeAll()
+        
+        
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
 //            print("asdasdads: \(indices)")
-//            collectionView.deleteItems(at: indices)
-            self.customCollectionView.reloadData()
+            collectionView.deleteItems(at: indices)
+            
+//            self.customCollectionView.performBatchUpdates({
+//                let indexSet = IndexSet(integer: indexPath.section)
+//                self.customCollectionView.reloadSections(indexSet)
+//                
+//            }, completion: nil)
+//            
+//            self.customCollectionView.reloadData()
 
         }, completion: { (true) in
-            sectionDataTest[indexPath.section].cellData.removeAll()
+            
         })
         
         
