@@ -11,4 +11,4 @@ import UIKit
 
 var isBeingOpened = false
 
-var sectionDataTest = [SectionData]()
+

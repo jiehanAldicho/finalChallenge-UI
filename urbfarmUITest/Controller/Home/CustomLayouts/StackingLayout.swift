@@ -24,23 +24,16 @@ class StackingLayout: UICollectionViewFlowLayout {
     weak var delegate: StackingLayoutDelegate?
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        //This func is only called when there's insertion or deletion in the collection view
         guard let attribute = super.layoutAttributesForItem(at: indexPath) else {
             return nil
         }
         
-        //        if attribute.indexPath.row == 0 {
-        //            print("Fakyu:", isBeingOpened, sectionDataTest[attribute.indexPath.section].opened)
-        //            if (isBeingOpened && sectionDataTest[attribute.indexPath.section].opened){
-        //                attribute.zIndex = 0
-        //            } else {
-        //                attribute.zIndex = attribute.indexPath.section * -1
-        //            }
-        //        } else {
-        //            attribute.zIndex = (attribute.indexPath.row) * -1
-        //        }
-        
         if (attribute.indexPath.row != 0) {
-            attribute.zIndex = (attribute.indexPath.row) * -1 - sectionDataTest.count
+            attribute.zIndex = (attribute.indexPath.row) * -1 - (collectionView?.numberOfSections)!
+        } else {
+            //This might have solved it 💆🏼‍♂️
+            attribute.zIndex = attribute.indexPath.section * -1
         }
         
         return attribute
@@ -51,48 +44,14 @@ class StackingLayout: UICollectionViewFlowLayout {
             return nil
         }
         
-        //        for attribute in allAttributes {
-        //            if !(isBeingOpened) && attribute.indexPath.row == 0 {
-        //                attribute.zIndex = attribute.indexPath.section * -1
-        //            }
-        //        }
-        
         for attribute in allAttributes {
-            //            print("Attribute in section \(attribute.indexPath.section), row: \(attribute.indexPath.row) with zIndex: \(attribute.zIndex)")
-            //            if attribute.indexPath.row == 0 {
-            //                if (isBeingOpened && sectionDataTest[attribute.indexPath.section].opened){
-            ////                    attribute.zIndex = 0
-            ////                    print("Attribute in section \(attribute.indexPath.section), row: \(attribute.indexPath.row) with zIndex: \(attribute.zIndex)")
-            //                    isBeingOpened = false
-            //                } else {
-            ////                    attribute.zIndex = attribute.indexPath.section * -1
-            //                }
-            //            }
-            
             attribute.zIndex = attribute.indexPath.section * -1
-            //            } else {
-            //                attribute.zIndex = (attribute.indexPath.row) * -1
-            //            }
-            //            print("section: \(attribute.indexPath.section), row: \(attribute.indexPath.row), index: \(attribute.zIndex)")
-            //            print("isBeingOpened \(isBeingOpened)")
+            
         }
         
         return allAttributes
     }
     
-    override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard let attribute = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath) else {
-            return nil
-        }
-        //        print("dissapearing cell -> section: \(itemIndexPath.section), row \(itemIndexPath.row) zindex \(attribute.zIndex)")
-        return attribute
-    }
-    
-    
-    
-    override func prepare() {
-        //        print("prepare called")
-    }
     
     override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard let attribute = super.initialLayoutAttributesForAppearingItem(at: itemIndexPath) else {
@@ -101,11 +60,11 @@ class StackingLayout: UICollectionViewFlowLayout {
         
         //Delay buffer for tabBar swiping
         // TODO: Only call this when tab-bar swipes
-        //        let section = attribute.indexPath.section
-        //        let xOffset = CGFloat(100 * section)
-        //
-        //        let frm = attribute.frame
-        //        attribute.frame = CGRect(x: frm.minX + xOffset , y: frm.minY, width: frm.width, height: frm.height)
+//                let section = attribute.indexPath.section
+//                let xOffset = CGFloat(100 * section)
+//        
+//                let frm = attribute.frame
+//                attribute.frame = CGRect(x: frm.minX + xOffset , y: frm.minY, width: frm.width, height: frm.height)
         //
         return attribute
     }

@@ -24,7 +24,6 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     //Line spacing for section
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            print("insetForSectionAt being called")
 //            if section != 0 {
 //                if sectionDataTest[section - 1].opened == true {
 //                    return UIEdgeInsets(top: 100, left: 0, bottom: -100, right: 0)
@@ -57,7 +56,6 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("sizeForItemAt being called")
         var cellHeight: CGFloat = 300
 
         if isBeingOpened {

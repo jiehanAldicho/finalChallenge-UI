@@ -30,6 +30,8 @@ class ContainerCell: UICollectionViewCell {
         return colView
     }()
     
+    var sectionDataTest = [SectionData]()
+    
 //    var sectionDataTest = [SectionData]()
     
     override init(frame: CGRect) {
@@ -50,7 +52,6 @@ class ContainerCell: UICollectionViewCell {
         customCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         
         customCollectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-//        collectionViewYConstraint.isActive = true
     }
     
     func setupData() {
@@ -67,7 +68,7 @@ class ContainerCell: UICollectionViewCell {
 //        UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseInOut, animations: {
 //            self.view.layoutIfNeeded()
 //        }, completion: nil)
-        print("animate tab bar here")
+//        print("animate tab bar here")
     }
     
     func newExpand() {
@@ -75,7 +76,7 @@ class ContainerCell: UICollectionViewCell {
 //        UIView.animate(withDuration: 1) {
 //            self.view.layoutIfNeeded()
 //        }
-        print("animate tab bar here")
+//        print("animate tab bar here")
     }
     
     func scrollToTargetCell(to indexPath: IndexPath, yOffset: CGFloat, completion: @escaping () -> ()) {
