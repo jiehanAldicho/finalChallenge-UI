@@ -47,6 +47,18 @@ class MenuCell: UICollectionViewCell {
         self.backgroundColor = .clear
         setupIconConstraint()
         setupLabelConstraint()
+        
+    }
+    
+    func checkSelected() {
+        print(self.isSelected, "is selected")
+        if self.isSelected {
+            self.circleBG.layer.borderColor = UIColor.darkGray.cgColor
+            self.circleBG.layer.borderWidth = 2.5
+            self.menuLabel.textColor = .darkGray
+            self.menuLabel.font = UIFont(name: "Avenir-Black", size: 11)
+            self.menuIcon.tintColor = .darkGray
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,7 +80,6 @@ class MenuCell: UICollectionViewCell {
     func setupLabelConstraint()  {
         menuLabel.translatesAutoresizingMaskIntoConstraints = false
         menuLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
-//        menuLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
         menuLabel.topAnchor.constraint(equalTo: menuIcon.bottomAnchor, constant: 12).isActive = true
     }
 }

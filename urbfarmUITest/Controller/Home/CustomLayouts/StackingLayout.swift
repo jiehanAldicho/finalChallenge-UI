@@ -46,7 +46,6 @@ class StackingLayout: UICollectionViewFlowLayout {
         
         for attribute in allAttributes {
             attribute.zIndex = attribute.indexPath.section * -1
-            
         }
         
         return allAttributes

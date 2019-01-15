@@ -17,6 +17,7 @@ extension FakeTabBar: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuCell
         cell.menuIcon.image = UIImage(named: menus[indexPath.row])?.withRenderingMode(.alwaysTemplate)
         cell.menuLabel.text = menus[indexPath.row].uppercased()
+        
         return cell
     }
     
@@ -29,6 +30,8 @@ extension FakeTabBar: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
     //TODO: Refactor animation functions
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("didselect called")
+        
         let cell = collectionView.cellForItem(at: indexPath) as! MenuCell
         
         //Border animation have to use CABasic animation since it's layer and not UIView
@@ -62,6 +65,8 @@ extension FakeTabBar: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
             cell.menuIcon.tintColor = .darkGray
             cell.menuLabel.font = UIFont(name: "Avenir-Black", size: 11)
         }, completion: nil)
+        
+        delegate?.selectedMenuAt(indexPath: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

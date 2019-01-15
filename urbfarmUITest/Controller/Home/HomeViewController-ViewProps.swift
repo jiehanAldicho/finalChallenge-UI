@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     lazy var containerCollectionView: UICollectionView = {
-        let layout = ContainerLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
@@ -21,16 +21,17 @@ class HomeViewController: UIViewController {
         colView.delegate = self
         colView.backgroundColor = .clear
         colView.contentInsetAdjustmentBehavior = .never
-        colView.decelerationRate = UIScrollView.DecelerationRate.fast
+//        colView.decelerationRate = UIScrollView.DecelerationRate.fast
+        colView.isPagingEnabled = true
         
         colView.register(ContainerCell.self, forCellWithReuseIdentifier: "containerCell")
         
         return colView
     }()
     
-    var tabBar: FakeTabBar = {
+    lazy var tabBar: FakeTabBar = {
         let tab = FakeTabBar()
-        tab.alpha = 0
+        tab.delegate = self
         return tab
     }()
     

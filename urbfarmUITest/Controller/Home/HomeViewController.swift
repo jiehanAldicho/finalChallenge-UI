@@ -21,6 +21,8 @@ extension HomeViewController {
         setupTabBarConstraint()
         
         setupData()
+        
+        containerCollectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
     }
     
     func setupData() {
@@ -31,5 +33,13 @@ extension HomeViewController {
             sectionDataTest.append(data)
         }
     }
+    
+}
+
+extension HomeViewController: FakeTabBarDelegate {
+    func selectedMenuAt(indexPath: IndexPath) {
+        containerCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
     
 }

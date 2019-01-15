@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol FakeTabBarDelegate: class {
+    func selectedMenuAt(indexPath: IndexPath)
+}
+
 class FakeTabBar: UIView {
+    
+    weak var delegate: FakeTabBarDelegate?
     
     enum PropsConstant {
         enum MenuCell: CGFloat {

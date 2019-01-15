@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol ContainerCellDDelegate: class {
+    func animateTabBarForExpansion()
+    func animateTabBarForCollapse()
+}
+
 class ContainerCell: UICollectionViewCell {
+    weak var delegate: ContainerCellDDelegate?
+    
     lazy var customCollectionView: UICollectionView = {
         let layout = StackingLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -64,19 +71,19 @@ class ContainerCell: UICollectionViewCell {
     }
     
     func newCollapse() {
-//        tabBarYConstraint.constant = 0
-//        UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseInOut, animations: {
-//            self.view.layoutIfNeeded()
-//        }, completion: nil)
-//        print("animate tab bar here")
+        guard let delegate = delegate else {
+            print("delegate not found")
+            return
+        }
+        delegate.animateTabBarForCollapse()
     }
     
     func newExpand() {
-//        tabBarYConstraint.constant = -200
-//        UIView.animate(withDuration: 1) {
-//            self.view.layoutIfNeeded()
-//        }
-//        print("animate tab bar here")
+        guard let delegate = delegate else {
+            print("delegate not found")
+            return
+        }
+        delegate.animateTabBarForExpansion()
     }
     
     func scrollToTargetCell(to indexPath: IndexPath, yOffset: CGFloat, completion: @escaping () -> ()) {

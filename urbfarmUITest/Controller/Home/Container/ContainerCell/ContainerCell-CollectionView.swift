@@ -135,20 +135,18 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
 extension ContainerCell: RoundedCellDelegate {
     
     func backButtonPressed(onCell: RoundedCell)  {
-        //Trigger cell collapse here
         let collectionView = customCollectionView
         guard let indexPath = collectionView.indexPath(for: onCell) else {
-//            print("indexPath not found")
+            print("indexPath not found")
             return
+        }
+        
+        self.scrollToTargetCell(to: indexPath, yOffset: 0) {
+            
         }
         
         isBeingOpened = false
         sectionDataTest[indexPath.section].opened = false
-//        collectionView.reloadData()
-
-//        self.scrollToTargetCell(to: indexPath, yOffset: 0, completion: {
-//
-//        })
         
         var indices = [IndexPath]()
         
@@ -156,25 +154,12 @@ extension ContainerCell: RoundedCellDelegate {
             let newIndex = IndexPath(row: i, section: indexPath.section)
             indices.append(newIndex)
         }
-    
-//        print("isBeingOpened called from back button: \(isBeingOpened)")
         
         sectionDataTest[indexPath.section].cellData.removeAll()
         
-        
-        
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-//            print("asdasdads: \(indices)")
             collectionView.deleteItems(at: indices)
             
-//            self.customCollectionView.performBatchUpdates({
-//                let indexSet = IndexSet(integer: indexPath.section)
-//                self.customCollectionView.reloadSections(indexSet)
-//                
-//            }, completion: nil)
-//            
-//            self.customCollectionView.reloadData()
-
         }, completion: { (true) in
             
         })
