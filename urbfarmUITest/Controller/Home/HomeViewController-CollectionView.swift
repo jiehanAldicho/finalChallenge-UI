@@ -33,6 +33,13 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let selectedIndex = containerCollectionView.indexPathsForVisibleItems[0]
+        self.tabBar.menucCollectionView.selectItem(at: selectedIndex, animated: true, scrollPosition: [])
+    }
+    
+    
 }
 
 extension HomeViewController: ContainerCellDDelegate {

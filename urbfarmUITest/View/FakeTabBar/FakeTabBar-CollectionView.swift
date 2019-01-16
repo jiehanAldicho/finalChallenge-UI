@@ -18,6 +18,11 @@ extension FakeTabBar: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
         cell.menuIcon.image = UIImage(named: menus[indexPath.row])?.withRenderingMode(.alwaysTemplate)
         cell.menuLabel.text = menus[indexPath.row].uppercased()
         
+        if indexPath.row == 1 {
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+            cell.isSelected = true
+        }
+        
         return cell
     }
     

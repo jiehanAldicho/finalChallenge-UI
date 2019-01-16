@@ -10,6 +10,16 @@ import UIKit
 
 class MenuCell: UICollectionViewCell {
     
+    override var isSelected: Bool {
+        didSet {
+            if self.isSelected {
+                self.animateSelected()
+            } else {
+                self.animateDeselected()
+            }
+        }
+    }
+    
     let menuIcon: UIImageView = {
         let img = UIImageView()
         img.tintColor = .lightGray
@@ -81,5 +91,72 @@ class MenuCell: UICollectionViewCell {
         menuLabel.translatesAutoresizingMaskIntoConstraints = false
         menuLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         menuLabel.topAnchor.constraint(equalTo: menuIcon.bottomAnchor, constant: 12).isActive = true
+    }
+}
+
+extension MenuCell {
+    func animateSelected() {
+        let colorAnimation = CABasicAnimation(keyPath: "borderColor")
+        colorAnimation.fromValue = UIColor.lightGray.cgColor
+        colorAnimation.toValue = UIColor.darkGray.cgColor
+        colorAnimation.duration = 0.5
+        colorAnimation.isRemovedOnCompletion = false
+        colorAnimation.fillMode = .forwards
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
+        
+        let borderWidthAnimation = CABasicAnimation(keyPath: "borderWidth")
+        borderWidthAnimation.fromValue = 2
+        borderWidthAnimation.toValue = 2.5
+        borderWidthAnimation.duration = 0.5
+        borderWidthAnimation.isRemovedOnCompletion = false
+        borderWidthAnimation.fillMode = .forwards
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
+        self.circleBG.layer.add(colorAnimation, forKey: "borderColor")
+        self.circleBG.layer.add(borderWidthAnimation, forKey: "borderWidth")
+        
+        //UILabel color is un-animatable, use cross dissolve transition instead
+        UIView.transition(with: self.menuLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.menuLabel.textColor = .darkGray
+        }, completion: nil)
+        
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+            self.menuIcon.tintColor = .darkGray
+            self.menuLabel.font = UIFont(name: "Avenir-Black", size: 11)
+        }, completion: nil)
+    }
+    
+    func animateDeselected() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+            self.menuIcon.tintColor = .lightGray
+            self.menuLabel.font = UIFont(name: "Avenir-Heavy", size: 11)
+        }, completion: nil)
+        
+        //UILabel color is un-animatable, use cross dissolve transition instead
+        UIView.transition(with: self.menuLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.menuLabel.textColor = .lightGray
+        }, completion: nil)
+        
+        //Border animation have to use CABasic animation since it's layer and not UIView
+        let colorAnimation = CABasicAnimation(keyPath: "borderColor")
+        colorAnimation.fromValue = UIColor.darkGray.cgColor
+        colorAnimation.toValue = UIColor.lightGray.cgColor
+        colorAnimation.duration = 0.5
+        colorAnimation.isRemovedOnCompletion = false
+        colorAnimation.fillMode = .forwards
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
+        let borderWidthAnimation = CABasicAnimation(keyPath: "borderWidth")
+        borderWidthAnimation.fromValue = 2.5
+        borderWidthAnimation.toValue = 2
+        borderWidthAnimation.duration = 0.5
+        borderWidthAnimation.isRemovedOnCompletion = false
+        borderWidthAnimation.fillMode = .forwards
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
+        self.circleBG.layer.add(colorAnimation, forKey: "borderColor")
+        self.circleBG.layer.add(borderWidthAnimation, forKey: "borderWidth")
     }
 }
