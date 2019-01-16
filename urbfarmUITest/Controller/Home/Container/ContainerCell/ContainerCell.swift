@@ -15,6 +15,7 @@ protocol ContainerCellDDelegate: class {
 
 class ContainerCell: UICollectionViewCell {
     weak var delegate: ContainerCellDDelegate?
+    var isScrolled = false
     
     lazy var customCollectionView: UICollectionView = {
         let layout = StackingLayout()

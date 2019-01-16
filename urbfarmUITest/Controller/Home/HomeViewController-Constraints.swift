@@ -25,5 +25,9 @@ extension HomeViewController {
         
         tabBarYConstraint = tabBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
         tabBarYConstraint.isActive = true
+        
+//        tabBarYConstraint = tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+//        tabBarYConstraint.isActive = true
     }
+
 }
