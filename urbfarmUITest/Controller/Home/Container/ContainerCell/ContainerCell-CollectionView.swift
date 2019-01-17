@@ -38,9 +38,14 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
         
         if indexPath.row == 0 {
             let header = collectionView.dequeueReusableCell(withReuseIdentifier: "roundedCell", for: indexPath) as! RoundedCell
-            let colors = [#colorLiteral(red: 0.8563432097, green: 0.4937818646, blue: 0.6653347015, alpha: 1), #colorLiteral(red: 0.5605105162, green: 0.3113227487, blue: 0.7327066064, alpha: 1), #colorLiteral(red: 0.08446101099, green: 0.01631886512, blue: 0.1807191968, alpha: 1)]
             
-            let color = UIColor(hue: 0.25, saturation: 0.65, brightness: CGFloat(sectionDataTest.count - indexPath.section) / CGFloat(sectionDataTest.count) - 0.3, alpha: 1)
+            let h: CGFloat = 130 / 360
+            let s: CGFloat =  (39 - CGFloat(indexPath.section))     / 100
+            let b: CGFloat =  (51 - CGFloat(indexPath.section * 8)) / 100
+            
+            print(s, b)
+   
+            let color = UIColor(hue: h, saturation: s, brightness: b, alpha: 1)
         
             header.backgroundColor = color
             header.cellTitleLabel.text = sectionDataTest[indexPath.section].title
@@ -117,28 +122,18 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-//        if isBeingOpened {
-//            print("didscroll top minY", currentVisibleCells.top?.frame.minY)
-//        }
-        
-        //TODO: Fix flagging and find ways to access visible cells
         if isBeingOpened {
             var visibleIndexPaths = customCollectionView.indexPathsForVisibleItems
             
-            
-            print(visibleIndexPaths)
-            
             if !(isScrolled) {
                 visibleIndexPaths.sort(by: {$0[1]<$1[1]})
+                
                 currentVisibleCells.top = customCollectionView.cellForItem(at: visibleIndexPaths[0])
                 currentVisibleCells.middle = customCollectionView.cellForItem(at: visibleIndexPaths[1])
                 currentVisibleCells.bottom = customCollectionView.cellForItem(at: visibleIndexPaths[2])
                 
                 isScrolled = true
             }
-            
-            print(currentVisibleCells.top?.frame.minY, "top minY didscroll")
             
             guard let topLimit = currentVisibleCells.top?.frame.minY,
                 let bottomLimit = currentVisibleCells.bottom?.frame.maxY
