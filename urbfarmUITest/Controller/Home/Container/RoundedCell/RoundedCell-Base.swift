@@ -46,11 +46,20 @@ class RoundedCell: UICollectionViewCell {
         setupTitleLabelConstraint()
         
         roundCorner()
+        addShadow()
     }
     
     func roundCorner() {
         self.layer.cornerRadius = self.frame.height / 3
         self.layer.maskedCorners = [.layerMaxXMaxYCorner]
+    }
+    
+    func addShadow() {
+        self.layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: 1, height: 2)
+        layer.shadowRadius = 3
     }
     
     required init?(coder aDecoder: NSCoder) {
