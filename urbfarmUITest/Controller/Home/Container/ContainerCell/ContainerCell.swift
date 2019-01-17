@@ -15,7 +15,6 @@ protocol ContainerCellDDelegate: class {
 
 class ContainerCell: UICollectionViewCell {
     weak var delegate: ContainerCellDDelegate?
-    var isScrolled = false
     
     lazy var customCollectionView: UICollectionView = {
         let layout = StackingLayout()
@@ -63,7 +62,7 @@ class ContainerCell: UICollectionViewCell {
     }
     
     func setupData() {
-        for _ in 1...50 {
+        for _ in 1...10 {
             var data = SectionData()
             data.title = "Nasi Goreng"
             data.opened = false

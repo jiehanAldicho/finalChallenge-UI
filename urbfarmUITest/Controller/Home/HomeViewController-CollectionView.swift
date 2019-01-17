@@ -39,7 +39,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         self.tabBar.menucCollectionView.selectItem(at: selectedIndex, animated: true, scrollPosition: [])
     }
     
-    
 }
 
 extension HomeViewController: ContainerCellDDelegate {

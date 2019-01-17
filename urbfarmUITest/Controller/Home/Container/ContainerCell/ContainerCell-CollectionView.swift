@@ -39,17 +39,21 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
         if indexPath.row == 0 {
             let header = collectionView.dequeueReusableCell(withReuseIdentifier: "roundedCell", for: indexPath) as! RoundedCell
             let colors = [#colorLiteral(red: 0.8563432097, green: 0.4937818646, blue: 0.6653347015, alpha: 1), #colorLiteral(red: 0.5605105162, green: 0.3113227487, blue: 0.7327066064, alpha: 1), #colorLiteral(red: 0.08446101099, green: 0.01631886512, blue: 0.1807191968, alpha: 1)]
+            
+            let color = UIColor(hue: 0.3, saturation: 0.7, brightness: CGFloat(sectionDataTest.count - indexPath.section) / CGFloat(sectionDataTest.count), alpha: 1)
         
-            header.backgroundColor = colors[indexPath.section % 3]
+            header.backgroundColor = color
             header.cellTitleLabel.text = sectionDataTest[indexPath.section].title
             header.delegate = self
-        
+            
             return header
         } else if indexPath.row == 1{
             let contentCell = collectionView.dequeueReusableCell(withReuseIdentifier: "contentCell", for: indexPath) as! ContentCell
+            
             return contentCell
         } else {
             let bottomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "bottomCell", for: indexPath) as! BottomContentCell
+
             return bottomCell
         }
         
@@ -63,7 +67,7 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
                 cellHeight = 250
                 return CGSize(width: self.frame.width, height: cellHeight)
             } else if indexPath.row == 2 {
-                cellHeight = 900 //TODO: Calculate the remaining empty space
+                cellHeight = 700 //TODO: Calculate the remaining empty space
                 return CGSize(width: self.frame.width, height: cellHeight)
             } else {
                 return CGSize(width: self.frame.width, height: cellHeight)
@@ -99,86 +103,50 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
                         indices.append(newIndex)
                     }
     
+                    
+                    
                     UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut, animations: {
                         collectionView.insertItems(at: indices)
-                        
-                    }, completion: nil)
+                    }) { (true) in
+                    }
     
                     self.newExpand()
                 }
+                
+                
             }
         }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         //TODO: Fix flagging and find ways to access visible cells
-        if isBeingOpened {
-            var visibleIndexPaths = customCollectionView.indexPathsForVisibleItems
-            visibleIndexPaths.sort(by: {$0[1]<$1[1]})
-            print(visibleIndexPaths)
-            
-            var topMostCell = customCollectionView.cellForItem(at: visibleIndexPaths[0])
-            var middleCell: UICollectionViewCell? = {
-                if (visibleIndexPaths.count >= 3){
-                    return customCollectionView.cellForItem(at: visibleIndexPaths[1])
-                }
-                return nil
-            }()
-            var bottomMostCell: UICollectionViewCell? = {
-                if (visibleIndexPaths.count >= 3){
-                    return customCollectionView.cellForItem(at: visibleIndexPaths[visibleIndexPaths.count - 1])
-                }
-                return customCollectionView.cellForItem(at: visibleIndexPaths[1])
-            }()
-            
-//            if !(isScrolled){
-//                for indexPath in visibleIndexPaths {
-//                    if indexPath.row == 0 {
-//                        topMostCell = customCollectionView.cellForItem(at: indexPath)
-//                    } else if indexPath.row == 2 {
-//                        bottomMostCell = customCollectionView.cellForItem(at: indexPath)
-//                    } else {
-//                        middleCell = customCollectionView.cellForItem(at: indexPath)
-//                    }
+//        if isBeingOpened {
+//            var visibleIndexPaths = customCollectionView.indexPathsForVisibleItems
+//            visibleIndexPaths.sort(by: {$0[1]<$1[1]})
+//            print(visibleIndexPaths)
+//
+//            var topMostCell: UICollectionViewCell? = !(isScrolled) ? customCollectionView.cellForItem(at: visibleIndexPaths[0]) : nil
+//            var middleCell: UICollectionViewCell? = {
+//                if (visibleIndexPaths.count >= 3){
+//                    return customCollectionView.cellForItem(at: visibleIndexPaths[1])
 //                }
-//                isScrolled = true
-//            }
-            
-//            print(topMostCell?.frame.minY, "topmost")
-//            print(bottomMostCell?.frame.maxY, "bottom")
-//            print(scrollView.contentOffset.y, "scroll y offset")
-            
+//                return nil
+//            }()
+//            var bottomMostCell: UICollectionViewCell? = {
+//                if (visibleIndexPaths.count >= 3){
+//                    return customCollectionView.cellForItem(at: visibleIndexPaths[visibleIndexPaths.count - 1])
+//                }
+//                return customCollectionView.cellForItem(at: visibleIndexPaths[1])
+//            }()
+//            customCollectionView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: scrollView), animated: <#T##Bool#>)
 //            if scrollView.contentOffset.y < (topMostCell?.frame.minY)! + 100 {
 //                scrollView.contentOffset.y = (topMostCell?.frame.minY)! + 100
-//            }
-            
-            if scrollView.contentOffset.y < (topMostCell?.frame.minY)! + 100 {
-                scrollView.contentOffset.y = (topMostCell?.frame.minY)! + 100
-            } else if scrollView.contentOffset.y > (bottomMostCell?.frame.maxY)! {
-                scrollView.contentOffset.y = (bottomMostCell?.frame.maxY)!
-            }
-        }
-        
-    }
-    
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        if isBeingOpened {
-//            let visibleIndexPaths = customCollectionView.indexPathsForVisibleItems
-//
-//            guard
-//                let topMostCellY = customCollectionView.cellForItem(at: visibleIndexPaths[2])?.frame.minY,
-//                let bottomMostCellY = customCollectionView.cellForItem(at: visibleIndexPaths[1])?.frame.maxY
-//                else {
-//                    print("cells not found")
-//                    return
-//            }
-//            if scrollView.contentOffset.y < topMostCellY {
-//                scrollView.contentOffset.y = topMostCellY
-//            } else if scrollView.contentOffset.y > bottomMostCellY {
-//                scrollView.contentOffset.y = bottomMostCellY
+//            } else if scrollView.contentOffset.y + self.superview!.frame.height > (bottomMostCell?.frame.maxY)! {
+//                scrollView.contentOffset.y = self.superview!.frame.height
 //            }
 //        }
-//    }
+        
+    }
     
 }
 
@@ -191,9 +159,7 @@ extension ContainerCell: RoundedCellDelegate {
             return
         }
         
-        self.scrollToTargetCell(to: indexPath, yOffset: 0) {
-            
-        }
+       
         
         isBeingOpened = false
         sectionDataTest[indexPath.section].opened = false
@@ -206,6 +172,10 @@ extension ContainerCell: RoundedCellDelegate {
         }
         
         sectionDataTest[indexPath.section].cellData.removeAll()
+        
+        self.scrollToTargetCell(to: indexPath, yOffset: 0) {
+            
+        }
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             collectionView.deleteItems(at: indices)

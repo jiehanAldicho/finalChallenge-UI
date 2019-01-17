@@ -51,7 +51,6 @@ class StackingLayout: UICollectionViewFlowLayout {
         return allAttributes
     }
     
-    
     override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard let attribute = super.initialLayoutAttributesForAppearingItem(at: itemIndexPath) else {
             return nil
