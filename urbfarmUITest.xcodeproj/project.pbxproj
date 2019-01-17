@@ -27,7 +27,6 @@
 		B9DE3BB021E0AE0200821C31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BAF21E0AE0200821C31 /* HomeViewController.swift */; };
 		B9DE3BB221E0AE4500821C31 /* HomeViewController-Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BB121E0AE4500821C31 /* HomeViewController-Constraints.swift */; };
 		B9DE3BB421E0AE5F00821C31 /* HomeViewController-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BB321E0AE5F00821C31 /* HomeViewController-CollectionView.swift */; };
-		EDE3DB6921F04D5F005A28E8 /* TestColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE3DB6821F04D5F005A28E8 /* TestColorVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +52,6 @@
 		B9DE3BAF21E0AE0200821C31 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B9DE3BB121E0AE4500821C31 /* HomeViewController-Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-Constraints.swift"; sourceTree = "<group>"; };
 		B9DE3BB321E0AE5F00821C31 /* HomeViewController-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-CollectionView.swift"; sourceTree = "<group>"; };
-		EDE3DB6821F04D5F005A28E8 /* TestColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColorVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +153,6 @@
 			children = (
 				B9A3A86421E5AF77005B7B88 /* Global */,
 				B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */,
-				EDE3DB6821F04D5F005A28E8 /* TestColorVC.swift */,
 				B9DE3B9621E0ABE100821C31 /* MainTabBarController.swift */,
 				B94F568F21E1E6CD003EB703 /* AppIcon.xcassets */,
 				B9DE3BAC21E0AD4500821C31 /* Home */,
@@ -269,7 +266,6 @@
 				B9C47F0521EE03D9007D1E78 /* ContentCell-Bottom.swift in Sources */,
 				B9DE3B9721E0ABE100821C31 /* MainTabBarController.swift in Sources */,
 				B9A3A86621E5AF83005B7B88 /* GlobalVariables.swift in Sources */,
-				EDE3DB6921F04D5F005A28E8 /* TestColorVC.swift in Sources */,
 				B94F568E21E1E2CB003EB703 /* FakeTabBar.swift in Sources */,
 				B9C47F0321EE03D0007D1E78 /* ContentCell.swift in Sources */,
 				B9DE3BB421E0AE5F00821C31 /* HomeViewController-CollectionView.swift in Sources */,

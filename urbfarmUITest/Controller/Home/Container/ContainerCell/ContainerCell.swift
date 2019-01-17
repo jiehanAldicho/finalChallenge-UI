@@ -14,6 +14,12 @@ protocol ContainerCellDDelegate: class {
 }
 
 class ContainerCell: UICollectionViewCell {
+    struct AppearingCell {
+        var top: UICollectionViewCell?
+        var middle: UICollectionViewCell?
+        var bottom: UICollectionViewCell?
+    }
+    
     weak var delegate: ContainerCellDDelegate?
     
     lazy var customCollectionView: UICollectionView = {
@@ -39,7 +45,7 @@ class ContainerCell: UICollectionViewCell {
     
     var sectionDataTest = [SectionData]()
     
-//    var sectionDataTest = [SectionData]()
+    var currentVisibleCells = AppearingCell()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -10,29 +10,29 @@ import UIKit
 
 extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-        func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return sectionDataTest.count
-        }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sectionDataTest.count
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-                if sectionDataTest[section].opened == true {
-                    return sectionDataTest[section].cellData.count + 1
-                } else {
-                    return 1
-                }
+        if sectionDataTest[section].opened == true {
+            return sectionDataTest[section].cellData.count + 1
+        } else {
+            return 1
+        }
     }
     
     //Line spacing for section
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//            if section != 0 {
-//                if sectionDataTest[section - 1].opened == true {
-//                    return UIEdgeInsets(top: 100, left: 0, bottom: -100, right: 0)
-//
-//                }
-//            }
-//
-            return UIEdgeInsets(top: 0, left: 0, bottom: -100, right: 0)
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        //            if section != 0 {
+        //                if sectionDataTest[section - 1].opened == true {
+        //                    return UIEdgeInsets(top: 100, left: 0, bottom: -100, right: 0)
+        //
+        //                }
+        //            }
+        //
+        return UIEdgeInsets(top: 0, left: 0, bottom: -100, right: 0)
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -40,7 +40,7 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
             let header = collectionView.dequeueReusableCell(withReuseIdentifier: "roundedCell", for: indexPath) as! RoundedCell
             let colors = [#colorLiteral(red: 0.8563432097, green: 0.4937818646, blue: 0.6653347015, alpha: 1), #colorLiteral(red: 0.5605105162, green: 0.3113227487, blue: 0.7327066064, alpha: 1), #colorLiteral(red: 0.08446101099, green: 0.01631886512, blue: 0.1807191968, alpha: 1)]
             
-            let color = UIColor(hue: 0.3, saturation: 0.7, brightness: CGFloat(sectionDataTest.count - indexPath.section) / CGFloat(sectionDataTest.count), alpha: 1)
+            let color = UIColor(hue: 0.25, saturation: 0.65, brightness: CGFloat(sectionDataTest.count - indexPath.section) / CGFloat(sectionDataTest.count) - 0.3, alpha: 1)
         
             header.backgroundColor = color
             header.cellTitleLabel.text = sectionDataTest[indexPath.section].title
@@ -53,7 +53,7 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
             return contentCell
         } else {
             let bottomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "bottomCell", for: indexPath) as! BottomContentCell
-
+            
             return bottomCell
         }
         
@@ -61,13 +61,12 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var cellHeight: CGFloat = 300
-
         if isBeingOpened {
             if indexPath.row == 1 {
                 cellHeight = 250
                 return CGSize(width: self.frame.width, height: cellHeight)
             } else if indexPath.row == 2 {
-                cellHeight = 700 //TODO: Calculate the remaining empty space
+                cellHeight = 900 //TODO: Calculate the remaining empty space
                 return CGSize(width: self.frame.width, height: cellHeight)
             } else {
                 return CGSize(width: self.frame.width, height: cellHeight)
@@ -77,74 +76,82 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
         }
     }
     
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let cell = collectionView.cellForItem(at: indexPath) as! RoundedCell
-    
-            if indexPath.row == 0 {
-                if sectionDataTest[indexPath.section].opened == false {
-    
-                    sectionDataTest[indexPath.section].opened = true
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! RoundedCell
+        
+        if indexPath.row == 0 {
+            if sectionDataTest[indexPath.section].opened == false {
+                
+                sectionDataTest[indexPath.section].opened = true
+                
+                
+                self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
                     
-    
-                    self.scrollToTargetCell(to: indexPath, yOffset: 100, completion: {
-                        
-                    })
-                    isBeingOpened = true
-                    cell.showBackButton()
-    
-                    //TODO: Refactor these shits
-                    sectionDataTest[indexPath.section].cellData.append("bannamna")
-                    sectionDataTest[indexPath.section].cellData.append("new shits")
-    
-                    var indices = [IndexPath]()
-    
-                    for i in 1 ... sectionDataTest[indexPath.section].cellData.count {
-                        let newIndex = IndexPath(row: i, section: indexPath.section)
-                        indices.append(newIndex)
-                    }
-    
-                    
-                    
-                    UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut, animations: {
-                        collectionView.insertItems(at: indices)
-                    }) { (true) in
-                    }
-    
-                    self.newExpand()
+                })
+                isBeingOpened = true
+                isScrolled = false
+                cell.showBackButton()
+                
+                //TODO: Refactor these shits
+                sectionDataTest[indexPath.section].cellData.append("bannamna")
+                sectionDataTest[indexPath.section].cellData.append("new shits")
+                
+                var indices = [IndexPath]()
+                
+                for i in 1 ... sectionDataTest[indexPath.section].cellData.count {
+                    let newIndex = IndexPath(row: i, section: indexPath.section)
+                    indices.append(newIndex)
                 }
                 
                 
+                
+                UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut, animations: {
+                    collectionView.insertItems(at: indices)
+                }) { (true) in
+                }
+                
+                self.newExpand()
             }
         }
+    }
+    
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        //TODO: Fix flagging and find ways to access visible cells
 //        if isBeingOpened {
-//            var visibleIndexPaths = customCollectionView.indexPathsForVisibleItems
-//            visibleIndexPaths.sort(by: {$0[1]<$1[1]})
-//            print(visibleIndexPaths)
-//
-//            var topMostCell: UICollectionViewCell? = !(isScrolled) ? customCollectionView.cellForItem(at: visibleIndexPaths[0]) : nil
-//            var middleCell: UICollectionViewCell? = {
-//                if (visibleIndexPaths.count >= 3){
-//                    return customCollectionView.cellForItem(at: visibleIndexPaths[1])
-//                }
-//                return nil
-//            }()
-//            var bottomMostCell: UICollectionViewCell? = {
-//                if (visibleIndexPaths.count >= 3){
-//                    return customCollectionView.cellForItem(at: visibleIndexPaths[visibleIndexPaths.count - 1])
-//                }
-//                return customCollectionView.cellForItem(at: visibleIndexPaths[1])
-//            }()
-//            customCollectionView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: scrollView), animated: <#T##Bool#>)
-//            if scrollView.contentOffset.y < (topMostCell?.frame.minY)! + 100 {
-//                scrollView.contentOffset.y = (topMostCell?.frame.minY)! + 100
-//            } else if scrollView.contentOffset.y + self.superview!.frame.height > (bottomMostCell?.frame.maxY)! {
-//                scrollView.contentOffset.y = self.superview!.frame.height
-//            }
+//            print("didscroll top minY", currentVisibleCells.top?.frame.minY)
 //        }
+        
+        //TODO: Fix flagging and find ways to access visible cells
+        if isBeingOpened {
+            var visibleIndexPaths = customCollectionView.indexPathsForVisibleItems
+            
+            
+            print(visibleIndexPaths)
+            
+            if !(isScrolled) {
+                visibleIndexPaths.sort(by: {$0[1]<$1[1]})
+                currentVisibleCells.top = customCollectionView.cellForItem(at: visibleIndexPaths[0])
+                currentVisibleCells.middle = customCollectionView.cellForItem(at: visibleIndexPaths[1])
+                currentVisibleCells.bottom = customCollectionView.cellForItem(at: visibleIndexPaths[2])
+                
+                isScrolled = true
+            }
+            
+            print(currentVisibleCells.top?.frame.minY, "top minY didscroll")
+            
+            guard let topLimit = currentVisibleCells.top?.frame.minY,
+                let bottomLimit = currentVisibleCells.bottom?.frame.maxY
+                else {
+                    return
+            }
+            
+            if scrollView.contentOffset.y < topLimit + 100 {
+                scrollView.contentOffset.y = topLimit + 100
+            } else if scrollView.contentOffset.y + self.superview!.frame.height > bottomLimit {
+                scrollView.contentOffset.y = bottomLimit - self.superview!.frame.height
+            }
+        }
         
     }
     
@@ -160,7 +167,6 @@ extension ContainerCell: RoundedCellDelegate {
         }
         
        
-        
         isBeingOpened = false
         sectionDataTest[indexPath.section].opened = false
         

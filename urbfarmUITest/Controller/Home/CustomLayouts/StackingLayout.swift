@@ -13,13 +13,7 @@ protocol StackingLayoutDelegate: class {
     func isSectionOpened(at: Int) -> (Bool, Int)
 }
 
-
-
-
-//Did not use cell layer's z position because it can't be clicked properly
 class StackingLayout: UICollectionViewFlowLayout {
-    
-    //TODO: Fix index bug -> the layoutAttribute function is called twice because there are two animations (scrolling and expanding the section)
     
     weak var delegate: StackingLayoutDelegate?
     

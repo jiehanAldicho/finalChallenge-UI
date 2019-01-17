@@ -35,7 +35,6 @@ extension FakeTabBar: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
     //TODO: Refactor animation functions
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("didselect called")
         
         let cell = collectionView.cellForItem(at: indexPath) as! MenuCell
         
