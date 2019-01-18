@@ -11,9 +11,10 @@ import UIKit
 class HomeViewController: UIViewController {
     
     lazy var containerCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = ContainerLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.scrollDirection = .horizontal
         
         let colView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)

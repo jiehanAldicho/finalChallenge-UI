@@ -54,7 +54,7 @@ class StackingLayout: UICollectionViewFlowLayout {
         // TODO: Only call this when tab-bar swipes
 //                let section = attribute.indexPath.section
 //                let xOffset = CGFloat(100 * section)
-//        
+//
 //                let frm = attribute.frame
 //                attribute.frame = CGRect(x: frm.minX + xOffset , y: frm.minY, width: frm.width, height: frm.height)
         //

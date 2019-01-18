@@ -20,6 +20,8 @@ class ContainerCell: UICollectionViewCell {
         var bottom: UICollectionViewCell?
     }
     
+    var num: Int?
+    
     weak var delegate: ContainerCellDDelegate?
     
     lazy var customCollectionView: UICollectionView = {
@@ -49,7 +51,8 @@ class ContainerCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(customCollectionView)
+//        self.addSubview(customCollectionView)
+        self.contentView.addSubview(customCollectionView)
         setupData()
         setupCollectionViewContraint()
     }
@@ -60,11 +63,11 @@ class ContainerCell: UICollectionViewCell {
     
     func setupCollectionViewContraint() {
         customCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        customCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        customCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        customCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        customCollectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 0).isActive = true
+        customCollectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0).isActive = true
+        customCollectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0).isActive = true
         
-        customCollectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        customCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0).isActive = true
     }
     
     func setupData() {

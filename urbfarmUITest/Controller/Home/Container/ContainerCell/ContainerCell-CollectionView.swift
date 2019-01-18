@@ -39,11 +39,11 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
         if indexPath.row == 0 {
             let header = collectionView.dequeueReusableCell(withReuseIdentifier: "roundedCell", for: indexPath) as! RoundedCell
             
-            let h: CGFloat = 130 / 360
-            let s: CGFloat =  (39 - CGFloat(indexPath.section))     / 100
-            let b: CGFloat =  (51 - CGFloat(indexPath.section * 8)) / 100
+            let cellNum = self.num
             
-            print(s, b)
+            let h: CGFloat = 130 * CGFloat(cellNum!) / 360
+            let s: CGFloat = (39 - CGFloat(indexPath.section))     / 100
+            let b: CGFloat = (51 - CGFloat(indexPath.section * 8)) / 100
    
             let color = indexPath.section < 5 ? UIColor(hue: h, saturation: s, brightness: b, alpha: 1) : #colorLiteral(red: 0.6892318726, green: 0.7184664011, blue: 0.7309170365, alpha: 1)
         
@@ -135,10 +135,11 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
                 isScrolled = true
             }
             
-            guard let topLimit = currentVisibleCells.top?.frame.minY,
+            guard
+                let topLimit = currentVisibleCells.top?.frame.minY,
                 let bottomLimit = currentVisibleCells.bottom?.frame.maxY
-                else {
-                    return
+            else {
+                return
             }
             
             if scrollView.contentOffset.y < topLimit + 100 {

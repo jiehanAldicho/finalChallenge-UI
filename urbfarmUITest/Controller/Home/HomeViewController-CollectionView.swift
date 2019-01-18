@@ -16,6 +16,10 @@ struct SectionData {
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -24,8 +28,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "containerCell", for: indexPath) as! ContainerCell
         cell.delegate = self
+        cell.num = indexPath.row
+        cell.clipsToBounds = true
         let rowFloat = CGFloat(indexPath.row)
-        cell.backgroundColor = UIColor(displayP3Red: rowFloat * 0.3, green: rowFloat * 0.3, blue: rowFloat * 0.3, alpha: 1)
+        cell.contentView.backgroundColor = UIColor(displayP3Red: rowFloat * 0.3, green: rowFloat * 0.3, blue: rowFloat * 0.3, alpha: 1)
         return cell
 
     }
@@ -37,6 +43,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let selectedIndex = containerCollectionView.indexPathsForVisibleItems[0]
         self.tabBar.menucCollectionView.selectItem(at: selectedIndex, animated: true, scrollPosition: [])
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
     }
     
 }
