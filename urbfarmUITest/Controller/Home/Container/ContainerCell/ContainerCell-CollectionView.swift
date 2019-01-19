@@ -37,7 +37,7 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.row == 0 {
-            let header = collectionView.dequeueReusableCell(withReuseIdentifier: "roundedCell", for: indexPath) as! RoundedCell
+            let header = collectionView.dequeueReusableCell(withReuseIdentifier: "headerCell", for: indexPath) as! HeaderCell
             
             let cellNum = self.num
             
@@ -82,7 +82,7 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! RoundedCell
+        let cell = collectionView.cellForItem(at: indexPath) as! HeaderCell //This will be guide / header cell
         
         if indexPath.row == 0 {
             if sectionDataTest[indexPath.section].opened == false {
@@ -153,9 +153,9 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
 }
 
-extension ContainerCell: RoundedCellDelegate {
+extension ContainerCell: HeaderCellDelegate {
     
-    func backButtonPressed(onCell: RoundedCell)  {
+    func backButtonPressed(onCell: HeaderCell)  {
         let collectionView = customCollectionView
         guard let indexPath = collectionView.indexPath(for: onCell) else {
             print("indexPath not found")

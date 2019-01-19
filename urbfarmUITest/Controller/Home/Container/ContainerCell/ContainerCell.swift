@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ContainerCellDDelegate: class {
+protocol ContainerCellDelegate: class {
     func animateTabBarForExpansion()
     func animateTabBarForCollapse()
 }
@@ -22,7 +22,7 @@ class ContainerCell: UICollectionViewCell {
     
     var num: Int?
     
-    weak var delegate: ContainerCellDDelegate?
+    weak var delegate: ContainerCellDelegate?
     
     lazy var customCollectionView: UICollectionView = {
         let layout = StackingLayout()
@@ -38,7 +38,7 @@ class ContainerCell: UICollectionViewCell {
         colView.contentInsetAdjustmentBehavior = .never //Makes collectionview cell fully on top anchor
         
         //Register cell here
-        colView.register(RoundedCell.self, forCellWithReuseIdentifier: "roundedCell")
+        colView.register(HeaderCell.self, forCellWithReuseIdentifier: "headerCell")
         colView.register(ContentCell.self, forCellWithReuseIdentifier: "contentCell")
         colView.register(BottomContentCell.self, forCellWithReuseIdentifier: "bottomCell")
         
@@ -49,9 +49,10 @@ class ContainerCell: UICollectionViewCell {
     
     var currentVisibleCells = AppearingCell()
     
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.addSubview(customCollectionView)
         self.contentView.addSubview(customCollectionView)
         setupData()
         setupCollectionViewContraint()
@@ -59,15 +60,6 @@ class ContainerCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupCollectionViewContraint() {
-        customCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        customCollectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 0).isActive = true
-        customCollectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0).isActive = true
-        customCollectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0).isActive = true
-        
-        customCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0).isActive = true
     }
     
     func setupData() {
@@ -79,36 +71,5 @@ class ContainerCell: UICollectionViewCell {
         }
     }
     
-    func newCollapse() {
-        guard let delegate = delegate else {
-            print("delegate not found")
-            return
-        }
-        delegate.animateTabBarForCollapse()
-    }
     
-    func newExpand() {
-        guard let delegate = delegate else {
-            print("delegate not found")
-            return
-        }
-        delegate.animateTabBarForExpansion()
-    }
-    
-    func scrollToTargetCell(to indexPath: IndexPath, yOffset: CGFloat, completion: @escaping () -> ()) {
-        
-        UIView.animate(withDuration: 0.9, delay: 0, options: .curveEaseInOut, animations: {
-            
-            let selectedCell = self.customCollectionView.cellForItem(at: indexPath)
-            guard let cellOffset = selectedCell?.frame else {
-                return
-            }
-            
-            let offset = CGPoint(x: cellOffset.minX, y: cellOffset.minY + yOffset)
-            self.customCollectionView.setContentOffset(offset, animated: false)
-        }) { (true) in
-            completion()
-        }
-        
-    }
 }

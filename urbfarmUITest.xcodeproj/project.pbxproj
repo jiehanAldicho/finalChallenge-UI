@@ -21,12 +21,15 @@
 		B9C47F0921EE044D007D1E78 /* ContainerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C47F0821EE044D007D1E78 /* ContainerLayout.swift */; };
 		B9C47F0B21EE046B007D1E78 /* StackingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C47F0A21EE046B007D1E78 /* StackingLayout.swift */; };
 		B9DE3B9521E0ABE100821C31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */; };
-		B9DE3B9721E0ABE100821C31 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3B9621E0ABE100821C31 /* MainTabBarController.swift */; };
 		B9DE3B9F21E0ABE200821C31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9DE3B9D21E0ABE200821C31 /* LaunchScreen.storyboard */; };
 		B9DE3BAB21E0ACB400821C31 /* HomeViewController-ViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BAA21E0ACB400821C31 /* HomeViewController-ViewProps.swift */; };
 		B9DE3BB021E0AE0200821C31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BAF21E0AE0200821C31 /* HomeViewController.swift */; };
 		B9DE3BB221E0AE4500821C31 /* HomeViewController-Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BB121E0AE4500821C31 /* HomeViewController-Constraints.swift */; };
 		B9DE3BB421E0AE5F00821C31 /* HomeViewController-CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE3BB321E0AE5F00821C31 /* HomeViewController-CollectionView.swift */; };
+		ED69BC6021F2EF7F0024E8B5 /* Guides.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED69BC5F21F2EF7F0024E8B5 /* Guides.swift */; };
+		ED81009421F36FBE00D4EF11 /* ContainerCell-Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81009321F36FBE00D4EF11 /* ContainerCell-Constraints.swift */; };
+		ED81009621F36FF100D4EF11 /* ContainerCell-Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81009521F36FF100D4EF11 /* ContainerCell-Animation.swift */; };
+		ED81009821F371AA00D4EF11 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81009721F371AA00D4EF11 /* HeaderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,13 +48,16 @@
 		B9C47F0A21EE046B007D1E78 /* StackingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackingLayout.swift; sourceTree = "<group>"; };
 		B9DE3B9121E0ABE100821C31 /* urbfarmUITest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = urbfarmUITest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B9DE3B9621E0ABE100821C31 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B9DE3B9E21E0ABE200821C31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9DE3BA021E0ABE200821C31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9DE3BAA21E0ACB400821C31 /* HomeViewController-ViewProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-ViewProps.swift"; sourceTree = "<group>"; };
 		B9DE3BAF21E0AE0200821C31 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B9DE3BB121E0AE4500821C31 /* HomeViewController-Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-Constraints.swift"; sourceTree = "<group>"; };
 		B9DE3BB321E0AE5F00821C31 /* HomeViewController-CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController-CollectionView.swift"; sourceTree = "<group>"; };
+		ED69BC5F21F2EF7F0024E8B5 /* Guides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guides.swift; sourceTree = "<group>"; };
+		ED81009321F36FBE00D4EF11 /* ContainerCell-Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContainerCell-Constraints.swift"; sourceTree = "<group>"; };
+		ED81009521F36FF100D4EF11 /* ContainerCell-Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContainerCell-Animation.swift"; sourceTree = "<group>"; };
+		ED81009721F371AA00D4EF11 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				B938623621EC3686003A9137 /* ContainerCell.swift */,
+				ED81009321F36FBE00D4EF11 /* ContainerCell-Constraints.swift */,
+				ED81009521F36FF100D4EF11 /* ContainerCell-Animation.swift */,
 				B938623921EC3D3A003A9137 /* ContainerCell-CollectionView.swift */,
 			);
 			path = ContainerCell;
@@ -108,6 +116,7 @@
 				B920946921E3C60F0007A4EB /* RoundedCell-Base.swift */,
 				B9C47F0221EE03D0007D1E78 /* ContentCell.swift */,
 				B9C47F0421EE03D9007D1E78 /* ContentCell-Bottom.swift */,
+				ED81009721F371AA00D4EF11 /* HeaderCell.swift */,
 			);
 			path = RoundedCell;
 			sourceTree = "<group>";
@@ -140,9 +149,12 @@
 		B9DE3B9321E0ABE100821C31 /* urbfarmUITest */ = {
 			isa = PBXGroup;
 			children = (
+				B9A3A86421E5AF77005B7B88 /* Global */,
+				ED69BC5E21F2EF570024E8B5 /* Models */,
 				B9DE3BA621E0AC7500821C31 /* Controller */,
 				B9DE3BA921E0AC9800821C31 /* View */,
 				B9DE3BA021E0ABE200821C31 /* Info.plist */,
+				ED81009921F37BAF00D4EF11 /* SupportFiles */,
 			);
 			path = urbfarmUITest;
 			sourceTree = "<group>";
@@ -150,10 +162,6 @@
 		B9DE3BA621E0AC7500821C31 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B9A3A86421E5AF77005B7B88 /* Global */,
-				B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */,
-				B9DE3B9621E0ABE100821C31 /* MainTabBarController.swift */,
-				B94F568F21E1E6CD003EB703 /* AppIcon.xcassets */,
 				B9DE3BAC21E0AD4500821C31 /* Home */,
 			);
 			path = Controller;
@@ -163,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				B94F568821E1E234003EB703 /* FakeTabBar */,
-				B9DE3B9D21E0ABE200821C31 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +186,24 @@
 				B938623821EC3D06003A9137 /* Container */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		ED69BC5E21F2EF570024E8B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED69BC5F21F2EF7F0024E8B5 /* Guides.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ED81009921F37BAF00D4EF11 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B94F568F21E1E6CD003EB703 /* AppIcon.xcassets */,
+				B9DE3B9421E0ABE100821C31 /* AppDelegate.swift */,
+				B9DE3B9D21E0ABE200821C31 /* LaunchScreen.storyboard */,
+			);
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +281,6 @@
 				B94F568721E1E0F4003EB703 /* FakeTabBar-ViewProps.swift in Sources */,
 				B938623721EC3686003A9137 /* ContainerCell.swift in Sources */,
 				B9C47F0521EE03D9007D1E78 /* ContentCell-Bottom.swift in Sources */,
-				B9DE3B9721E0ABE100821C31 /* MainTabBarController.swift in Sources */,
 				B9A3A86621E5AF83005B7B88 /* GlobalVariables.swift in Sources */,
 				B94F568E21E1E2CB003EB703 /* FakeTabBar.swift in Sources */,
 				B9C47F0321EE03D0007D1E78 /* ContentCell.swift in Sources */,
@@ -266,6 +290,10 @@
 				B938623A21EC3D3A003A9137 /* ContainerCell-CollectionView.swift in Sources */,
 				B9DE3BAB21E0ACB400821C31 /* HomeViewController-ViewProps.swift in Sources */,
 				B9C47F0921EE044D007D1E78 /* ContainerLayout.swift in Sources */,
+				ED69BC6021F2EF7F0024E8B5 /* Guides.swift in Sources */,
+				ED81009421F36FBE00D4EF11 /* ContainerCell-Constraints.swift in Sources */,
+				ED81009821F371AA00D4EF11 /* HeaderCell.swift in Sources */,
+				ED81009621F36FF100D4EF11 /* ContainerCell-Animation.swift in Sources */,
 				B920946A21E3C60F0007A4EB /* RoundedCell-Base.swift in Sources */,
 				B9DE3BB221E0AE4500821C31 /* HomeViewController-Constraints.swift in Sources */,
 				B9C47F0B21EE046B007D1E78 /* StackingLayout.swift in Sources */,

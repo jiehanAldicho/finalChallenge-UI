@@ -52,7 +52,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
 }
 
-extension HomeViewController: ContainerCellDDelegate {
+extension HomeViewController: ContainerCellDelegate {
     func animateTabBarForExpansion() {
         tabBarYConstraint.constant = -200
         UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseInOut, animations: {
