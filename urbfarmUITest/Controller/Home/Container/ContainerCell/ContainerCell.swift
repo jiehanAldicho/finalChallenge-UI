@@ -65,7 +65,7 @@ class ContainerCell: UICollectionViewCell {
     func setupData() {
         for _ in 1...10 {
             var data = SectionData()
-            data.title = "Nasi Goreng"
+            data.title = "Menanam Bibit Kebencian"
             data.opened = false
             sectionDataTest.append(data)
         }
