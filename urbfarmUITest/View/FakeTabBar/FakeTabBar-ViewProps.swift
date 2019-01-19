@@ -46,7 +46,7 @@ class FakeTabBar: UIView {
         return colView
     }()
     
-    var menus = ["Home", "Profile", "Plants"]
+    var menus = ["Profile", "Guides", "Search"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)

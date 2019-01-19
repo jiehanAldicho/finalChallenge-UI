@@ -142,7 +142,6 @@
 			children = (
 				B9DE3BA621E0AC7500821C31 /* Controller */,
 				B9DE3BA921E0AC9800821C31 /* View */,
-				B9DE3BA721E0AC8D00821C31 /* Model */,
 				B9DE3BA021E0ABE200821C31 /* Info.plist */,
 			);
 			path = urbfarmUITest;
@@ -158,13 +157,6 @@
 				B9DE3BAC21E0AD4500821C31 /* Home */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B9DE3BA721E0AC8D00821C31 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		B9DE3BA921E0AC9800821C31 /* View */ = {

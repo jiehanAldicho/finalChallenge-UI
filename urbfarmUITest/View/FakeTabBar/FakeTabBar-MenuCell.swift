@@ -23,7 +23,7 @@ class MenuCell: UICollectionViewCell {
     let menuIcon: UIImageView = {
         let img = UIImageView()
         img.tintColor = .lightGray
-        img.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        img.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         return img
     }()
     
@@ -79,6 +79,8 @@ class MenuCell: UICollectionViewCell {
         menuIcon.translatesAutoresizingMaskIntoConstraints = false
         menuIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         menuIcon.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -(self.frame.height * 0.1)).isActive = true
+        menuIcon.widthAnchor.constraint(equalToConstant: menuIcon.frame.width).isActive = true
+        menuIcon.heightAnchor.constraint(equalToConstant: menuIcon.frame.height).isActive = true
         
         circleBG.translatesAutoresizingMaskIntoConstraints = false
         circleBG.centerXAnchor.constraint(equalTo: menuIcon.centerXAnchor, constant: 0).isActive = true

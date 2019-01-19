@@ -26,7 +26,6 @@ class StackingLayout: UICollectionViewFlowLayout {
         if (attribute.indexPath.row != 0) {
             attribute.zIndex = (attribute.indexPath.row) * -1 - (collectionView?.numberOfSections)!
         } else {
-            //This might have solved it 💆🏼‍♂️
             attribute.zIndex = attribute.indexPath.section * -1
         }
         
