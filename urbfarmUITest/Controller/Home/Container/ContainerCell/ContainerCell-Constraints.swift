@@ -15,6 +15,6 @@ extension ContainerCell {
         customCollectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0).isActive = true
         customCollectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0).isActive = true
         
-        customCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 60).isActive = true
+        customCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0).isActive = true
     }
 }

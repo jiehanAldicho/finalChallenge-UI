@@ -8,6 +8,12 @@
 
 import UIKit
 
+struct SectionData {
+    var opened = Bool()
+    var guide: Guide?
+    var cellData = [String]()
+}
+
 extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -24,13 +30,9 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     //Line spacing for section
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        //            if section != 0 {
-        //                if sectionDataTest[section - 1].opened == true {
-        //                    return UIEdgeInsets(top: 100, left: 0, bottom: -100, right: 0)
-        //
-        //                }
-        //            }
-        //
+        if section == 0 {
+            return UIEdgeInsets(top: 30, left: 0, bottom: -100, right: 0)
+        }
         return UIEdgeInsets(top: 0, left: 0, bottom: -100, right: 0)
     }
     
@@ -46,9 +48,14 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
             let b: CGFloat = (51 - CGFloat(indexPath.section * 8)) / 100
    
             let color = indexPath.section < 5 ? UIColor(hue: h, saturation: s, brightness: b, alpha: 1) : #colorLiteral(red: 0.6892318726, green: 0.7184664011, blue: 0.7309170365, alpha: 1)
-        
+            
+            guard let data = sectionDataTest[indexPath.section].guide else {
+                return header
+            }
+            
             header.backgroundColor = color
-            header.cellTitleLabel.text = sectionDataTest[indexPath.section].title
+            header.cellTitleLabel.text = data.title
+            header.imgVTest.image = data.plantImage
             header.delegate = self
             
             return header

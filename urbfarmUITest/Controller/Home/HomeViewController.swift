@@ -20,19 +20,18 @@ extension HomeViewController {
         setupContainerCollectionViewConstraint()
         setupTabBarConstraint()
         
-        setupData()
         
         containerCollectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
     }
     
-    func setupData() {
-        for _ in 0...10 {
-            var data = SectionData()
-            data.title = "Nasi Goreng"
-            data.opened = false
-            sectionDataTest.append(data)
-        }
-    }
+//    func setupData() {
+//        for _ in 0...10 {
+//            var data = SectionData()
+//            data.title = "Nasi Goreng"
+//            data.opened = false
+//            sectionDataTest.append(data)
+//        }
+//    }
     
 }
 
@@ -40,6 +39,4 @@ extension HomeViewController: FakeTabBarDelegate {
     func selectedMenuAt(indexPath: IndexPath) {
         containerCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
-    
-    
 }

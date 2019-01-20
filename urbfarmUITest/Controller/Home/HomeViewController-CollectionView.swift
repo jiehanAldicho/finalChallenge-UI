@@ -8,12 +8,6 @@
 
 import UIKit
 
-struct SectionData {
-    var opened = Bool()
-    var title = ""
-    var cellData = [String]()
-}
-
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
         return tab
     }()
     
-    var sectionDataTest = [SectionData]()
+//    var sectionDataTest = [SectionData]()
     
     //MARK: Constraint reference for animation
     //Should these be props of the collectionview object ?
