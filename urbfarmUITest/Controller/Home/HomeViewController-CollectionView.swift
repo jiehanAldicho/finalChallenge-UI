@@ -38,12 +38,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isBeingOpened {
-            containerCollectionView.isScrollEnabled = false
-        }
-    }
-    
 }
 
 extension HomeViewController: ContainerCellDelegate {
@@ -52,7 +46,7 @@ extension HomeViewController: ContainerCellDelegate {
         UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
-
+        containerCollectionView.isScrollEnabled = false
     }
     
     func animateTabBarForCollapse() {
@@ -60,5 +54,6 @@ extension HomeViewController: ContainerCellDelegate {
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
         }
+        containerCollectionView.isScrollEnabled = true
     }
 }
