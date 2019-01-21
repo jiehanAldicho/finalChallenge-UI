@@ -24,8 +24,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.delegate = self
         cell.num = indexPath.row
         cell.clipsToBounds = true
-        let rowFloat = CGFloat(indexPath.row)
-        cell.contentView.backgroundColor = UIColor(displayP3Red: rowFloat * 0.3, green: rowFloat * 0.3, blue: rowFloat * 0.3, alpha: 1)
         return cell
 
     }
@@ -41,7 +39,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        if isBeingOpened {
+            containerCollectionView.isScrollEnabled = false
+        }
     }
     
 }

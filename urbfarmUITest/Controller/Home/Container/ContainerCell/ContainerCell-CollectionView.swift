@@ -89,9 +89,10 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! HeaderCell //This will be guide / header cell
+        //This will be guide / header cell
         
         if indexPath.row == 0 {
+            let cell = collectionView.cellForItem(at: indexPath) as! HeaderCell 
             if sectionDataTest[indexPath.section].opened == false {
                 
                 sectionDataTest[indexPath.section].opened = true
@@ -130,8 +131,8 @@ extension ContainerCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isBeingOpened {
-            var visibleIndexPaths = customCollectionView.indexPathsForVisibleItems
             
+            var visibleIndexPaths = customCollectionView.indexPathsForVisibleItems
             if !(isScrolled) {
                 visibleIndexPaths.sort(by: {$0[1]<$1[1]})
                 
@@ -169,7 +170,6 @@ extension ContainerCell: HeaderCellDelegate {
             return
         }
         
-       
         isBeingOpened = false
         sectionDataTest[indexPath.section].opened = false
         

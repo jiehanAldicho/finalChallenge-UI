@@ -54,6 +54,7 @@ class ContainerCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.contentView.addSubview(customCollectionView)
+        self.backgroundColor = .white
         setupData()
         setupCollectionViewContraint()
     }
@@ -94,7 +95,7 @@ class ContainerCell: UICollectionViewCell {
         guide4.author = "Hubert"
         guide4.description = "This is a guide to plant Basil on a limited spaces in your apartment. It’s easy to grow this plant because you don’t need to have a lot of control of this plant. All you need is just to water it on a daily basis. It will takes about 40 days to grow this plant. I have already have a plenty of basils on my house using this guide."
         guide4.difficulty = .easy
-        guide4.title = "Planting Marijuana at Home"
+        guide4.title = "Planting Chili at Home"
         guide4.duration = 10
         guide4.plantType = "Oregano"
         guide4.plantImage = UIImage(named: "gambarTest4")
